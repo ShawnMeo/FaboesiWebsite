@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faboesi Producten - Pure honingen uit Suriname. Ontdek onze collectie.">
+    <title>Producten - Faboesi Pure Surinaamse Honing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Products Page Specific Styles */
+        .products-page {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .products-page-header {
+            text-align: center;
+            padding: var(--space-2xl) var(--space-xl);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .products-page-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--neutral-100);
+            margin-bottom: var(--space-md);
+        }
+
+        .products-page-subtitle {
+            font-size: 1.2rem;
+            color: var(--neutral-400);
+            line-height: 1.8;
+        }
+
+        /* Horizontal Product Cards Container */
+        .products-list {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2xl);
+        }
+
+        /* Horizontal Product Card */
+        .product-card-horizontal {
+            display: flex;
+            flex-direction: row;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card-horizontal:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+            box-shadow: var(--shadow-card), var(--shadow-glow);
+            transform: translateY(-4px);
+        }
+
+        .product-card-horizontal .product-image-container {
+            flex: 0 0 280px;
+            width: 280px;
+            height: 280px;
+            aspect-ratio: 1 / 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(251, 191, 36, 0.05) 0%, transparent 100%);
+            overflow: hidden;
+        }
+
+        .product-card-horizontal .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .product-card-horizontal:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-card-horizontal .product-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .product-card-horizontal:hover .product-glow {
+            opacity: 1;
+        }
+
+        .product-card-horizontal .product-info {
+            flex: 1;
+            padding: var(--space-2xl);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-card-horizontal .product-category {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--honey-500);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: var(--space-sm);
+        }
+
+        .product-card-horizontal .product-name {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--neutral-100);
+            margin-bottom: var(--space-md);
+        }
+
+        .product-card-horizontal .product-description {
+            font-size: 1rem;
+            color: var(--neutral-400);
+            line-height: 1.8;
+            margin-bottom: var(--space-lg);
+        }
+
+        .product-card-horizontal .product-meta {
+            display: flex;
+            gap: var(--space-md);
+            flex-wrap: wrap;
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .product-card-horizontal .product-size {
+            font-size: 0.9rem;
+            color: var(--neutral-300);
+            background: rgba(255, 255, 255, 0.08);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-md);
+        }
+
+        /* Product Badge - Horizontal */
+        .product-card-horizontal .product-badge {
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-md);
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 10;
+        }
+
+        .product-card-horizontal .product-badge.bestseller {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-card-horizontal {
+                flex-direction: column;
+            }
+
+            .product-card-horizontal .product-image-container {
+                flex: none;
+                width: 100%;
+                height: 250px;
+            }
+
+            .product-card-horizontal .product-info {
+                padding: var(--space-lg);
+            }
+
+            .product-card-horizontal .product-name {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="producten.html" class="active">Producten</a></li>
+            </ul>
+            <a href="tel:+5978725949" class="nav-cta">Contact Ons</a>
+        </div>
+    </nav>
+
+    <!-- Products Page Content -->
+    <main class="products-page">
+        <div class="products-page-header">
+            <span class="section-badge">Onze Collectie</span>
+            <h1 class="products-page-title">Pure Surinaamse <span class="highlight">Honing</span></h1>
+            <p class="products-page-subtitle">Ontdek onze collectie van pure, onbewerkte honingen uit de mangrovebossen,
+                oerwouden en savannes van Suriname.</p>
+        </div>
+
+        <div class="products-list">
+            <!-- Product Card 1 - Parwa -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <div class="product-badge bestseller">Bestseller</div>
+                    <img src="images/parwa_bottle.png" alt="Parwa Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Mild</span>
+                    <h2 class="product-name">Parwa Honing</h2>
+                    <p class="product-description">Rijke, gouden honing van de parwaboom uit het Surinaamse regenwoud.
+                        Deze milde honing heeft een zachte, bloemige smaak die perfect is voor dagelijks gebruik in
+                        thee, ontbijt of puur.</p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 2 - Mira Oedoe -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="images/all_honey.jpg" alt="Mira Oedoe Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Sweet</span>
+                    <h2 class="product-name">Mira Oedoe</h2>
+                    <p class="product-description">Unieke honing van de mira oedoe bloesem, een Surinaamse bosbloem met
+                        rijk aroma. Deze zoete honing heeft een diepere, complexe smaak die de essentie van het tropisch
+                        regenwoud vastlegt.</p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 3 - Jamoen -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="images/jamoen_parwa.jpg" alt="Jamoen Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Bitter</span>
+                    <h2 class="product-name">Jamoen</h2>
+                    <p class="product-description">Exclusieve honing uit de mangrovebossen. Bekroond met 3e prijs beste
+                        honing in het Caribisch gebied. Deze bijzondere honing heeft een licht bittere ondertoon die hem
+                        uniek maakt onder kenners.</p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 4 - Bosbloemen -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="images/flower.jpg" alt="Bosbloemen Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Mild</span>
+                    <h2 class="product-name">Bosbloemen</h2>
+                    <p class="product-description">Een rijke blend van diverse bosbloesems uit het Surinaamse oerwoud.
+                        Deze veelzijdige honing combineert de nectar van verschillende wilde bloemen voor een
+                        harmonieuze, milde smaak.</p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+                <p>Voor meer informatie, bel 8725949.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Producten</h4>
+                    <a href="#">Bosbloemen honing</a>
+                    <a href="#">Parwa Honing</a>
+                    <a href="#">Jamoen Honing</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Over Faboesi</h4>
+                    <a href="#">Ons Verhaal</a>
+                    <a href="#">Bijenhouderij</a>
+                    <a href="#">Suriname</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <a href="#">Neem Contact Op</a>
+                    <a href="#">Veelgestelde Vragen</a>
+                    <a href="#">Locatie</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Faboesi. Alle rechten voorbehouden. Suriname 🇸🇷</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

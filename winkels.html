@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faboesi honing verkrijgbaar bij deze winkels in Suriname">
+    <title>Winkels | Faboesi - Uit het Bos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Stores Page Specific Styles */
+        .stores-page {
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        .stores-header {
+            text-align: center;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        .stores-header h1 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--neutral-100);
+            margin-bottom: var(--space-md);
+        }
+
+        .stores-header p {
+            color: var(--neutral-400);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .stores-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-md);
+        }
+
+        .store-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            transition: border-color 0.2s ease;
+        }
+
+        .store-card:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        .store-name {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--honey-400);
+            margin-bottom: var(--space-sm);
+        }
+
+        .store-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .store-detail {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--neutral-300);
+            font-size: 0.95rem;
+        }
+
+        .store-detail-icon {
+            width: 20px;
+            text-align: center;
+            color: var(--neutral-500);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--honey-400);
+            text-decoration: none;
+            padding: var(--space-md);
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--honey-300);
+        }
+
+        @media (min-width: 768px) {
+            .stores-header h1 {
+                font-size: 3rem;
+            }
+
+            .store-card {
+                padding: var(--space-xl);
+            }
+
+            .store-details {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: var(--space-lg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🍯</span>
+                <span class="logo-text">Faboesi</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Producten</a></li>
+                <li><a href="winkels.html" class="active">Winkels</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <a href="index.html#products" class="nav-cta">Bekijk Producten</a>
+        </div>
+    </nav>
+
+    <main class="stores-page">
+        <a href="index.html" class="back-link">← Terug naar Home</a>
+
+        <div class="stores-header">
+            <h1>Winkels Verkrijgbaar</h1>
+            <p>Faboesi honing is verkrijgbaar bij de volgende winkels in Suriname</p>
+        </div>
+
+        <div class="stores-list">
+            <!-- Store 1 -->
+            <div class="store-card">
+                <h2 class="store-name">Winkel Naam 1</h2>
+                <div class="store-details">
+                    <div class="store-detail">
+                        <span class="store-detail-icon">📍</span>
+                        <span>Adres straat 123, Paramaribo</span>
+                    </div>
+                    <div class="store-detail">
+                        <span class="store-detail-icon">📞</span>
+                        <span>+597 123-4567</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Store 2 -->
+            <div class="store-card">
+                <h2 class="store-name">Winkel Naam 2</h2>
+                <div class="store-details">
+                    <div class="store-detail">
+                        <span class="store-detail-icon">📍</span>
+                        <span>Adres straat 456, Paramaribo</span>
+                    </div>
+                    <div class="store-detail">
+                        <span class="store-detail-icon">📞</span>
+                        <span>+597 234-5678</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Store 3 -->
+            <div class="store-card">
+                <h2 class="store-name">Winkel Naam 3</h2>
+                <div class="store-details">
+                    <div class="store-detail">
+                        <span class="store-detail-icon">📍</span>
+                        <span>Adres straat 789, Paramaribo</span>
+                    </div>
+                    <div class="store-detail">
+                        <span class="store-detail-icon">📞</span>
+                        <span>+597 345-6789</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more stores as needed -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-icon">🍯</span>
+                <span class="logo-text">Faboesi</span>
+                <p>Uit het bos, voor u. Pure Surinaamse honing.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Faboesi - Uit het Bos. Alle rechten voorbehouden. Suriname 🇸🇷</p>
+        </div>
+    </footer>
+</body>
+
+</html>
