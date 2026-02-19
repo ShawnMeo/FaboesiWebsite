@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Over Faboesi - Het verhaal achter onze pure Surinaamse honing.">
+    <title>Over Ons - Faboesi Pure Surinaamse Honing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-page {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .about-header {
+            text-align: center;
+            padding: var(--space-2xl) var(--space-xl);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--neutral-100);
+            margin-bottom: var(--space-md);
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-xl) var(--space-4xl);
+        }
+
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-4xl);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-2xl);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image-container {
+            width: 100%;
+            height: 300px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .about-section:hover .about-image {
+            transform: scale(1.05);
+        }
+
+        .about-text h2 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--honey-400);
+            margin-bottom: var(--space-md);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--neutral-300);
+            line-height: 1.8;
+            margin-bottom: var(--space-md);
+        }
+
+        @media (min-width: 768px) {
+            .about-section {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .about-section.reverse {
+                flex-direction: row-reverse;
+            }
+
+            .about-image-container {
+                flex: 0 0 40%;
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="producten.html">Producten</a></li>
+                <li><a href="about.html" class="active">Over Ons</a></li>
+                <li><a href="winkels.html">Winkels</a></li>
+            </ul>
+            <a href="tel:+5978725949" class="nav-cta">Contact Ons</a>
+        </div>
+    </nav>
+
+    <main class="about-page">
+        <div class="about-header">
+            <span class="section-badge">Ons Verhaal</span>
+            <h1 class="about-title">Over <span class="highlight">Faboesi</span></h1>
+            <p class="section-subtitle">Faboesi is een familiebedrijf, opgericht in 1998 door Frank en Mariska van der
+                Sluys.</p>
+        </div>
+
+        <div class="about-content">
+            <!-- Story Section -->
+            <section class="about-section">
+                <div class="about-image-container">
+                    <img src="assets/images/parwa_bottle.png" alt="Pure Honing" class="about-image">
+                </div>
+                <div class="about-text">
+                    <h2>Onze Geschiedenis</h2>
+                    <p>
+                        Tijdens onze stageperiode voor onze studie Tropische Landbouw hebben we in Brazilië kennis
+                        gemaakt met de bijenteelt. We wisten gelijk dat we daarin verder wilden gaan. In 1995 zijn we
+                        naar Suriname verhuisd.
+                    </p>
+                    <p>
+                        In de loop der jaren hebben we een aardige bijenstand opgebouwd, voornamelijk in het gebied
+                        achter Zanderij. Toen in 2010 de grootste imker van Suriname en tevens onze vriend Kees van
+                        Deursen is overleden, hebben wij dit bedrijf overgenomen.
+                    </p>
+                    <p>
+                        In 2019 is onze zoon Ranan ook gaan meewerken in het bedrijf. Wij zijn alle drie imkers die erg
+                        veel van de natuur en de bijen houden en het werk met veel plezier doen.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Full Width Banner -->
+            <section class="banner-section"
+                style="width: 100%; height: 400px; background-color: var(--neutral-100); border-radius: var(--radius-2xl); margin-bottom: var(--space-4xl); overflow: hidden;">
+                <!-- Placeholder for full width image -->
+            </section>
+
+            <!-- Mission Section -->
+            <section class="about-section reverse">
+                <div class="about-image-container">
+                    <img src="assets/images/logo.png" alt="Duurzaamheid" class="about-image"
+                        style="object-fit: contain; padding: 2rem;">
+                </div>
+                <div class="about-text">
+                    <h2>Puur Natuur</h2>
+                    <p>
+                        Faboesi honing is 100% pure, rauwe, onverhitte en ongefilterde honing. Hierdoor zijn alle
+                        natuurlijke enzymen, stuifmeel en bloemenaroma’s waarmee de bijen de honing maken, nog aanwezig.
+                        Puur natuur rechtstreeks uit de ongerepte bossen van Suriname.
+                    </p>
+                    <p>
+                        Wij geven een houdbaarheidsdatum van 2 jaren, want na die periode gaat de kwaliteit van de
+                        honing, met name de actieve enzymen, langzaam achteruit. De honing blijft soms nog jaren
+                        geschikt voor consumptie.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Health Benefits Section -->
+            <section class="about-section">
+                <div class="about-text" style="width: 100%;">
+                    <h2>Gezondheidsvoordelen</h2>
+                    <p>
+                        Honing is een natuurlijke energiebron met een groot aantal voordelen voor de gezondheid. Rauwe
+                        honing bevat veel vitaminen, mineralen, anti-oxidanten en aminozuren. De krachtige
+                        anti-bacteriële en antiseptische eigenschappen van honing helpen onder andere voor de volgende
+                        problemen:
+                    </p>
+                    <ul style="list-style-type: disc; margin-left: 20px; color: var(--neutral-300); line-height: 1.8;">
+                        <li>Het vermindert borstklachten en hoest en verzacht een pijnlijke keel</li>
+                        <li>Het verbetert chronische bronchitis, astma, sinusproblemen en allergieën</li>
+                        <li>Honing versnelt de genezing van wonden en vermindert ontstekingen</li>
+                        <li>Het verzacht de huid en verhelpt huidaandoeningen</li>
+                        <li>Het vergemakkelijkt de spijsvertering en de opname van andere voedingsmiddelen</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">
+                        Deze geneeskrachtige eigenschappen veranderen wanneer honing wordt verhit of onder druk
+                        gefilterd, wat vaak gebeurd bij veel honingen uit de supermarkt. Faboesi honing wordt nooit
+                        verhit, waardoor alle enzymen en anti-microbiële eigenschappen behouden blijven, precies zoals
+                        de natuur het gemaakt heeft.
+                    </p>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="about-section">
+                <div class="about-text" style="width: 100%;">
+                    <h2>Veel Gestelde Vragen</h2>
+
+                    <div class="faq-item" style="margin-bottom: 2rem;">
+                        <h3
+                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
+                            Waarom kristaliseert honing?</h3>
+                        <p>
+                            Honing bestaat voor het grootste deel uit natuurlijke suikers en een deel water (rond de
+                            20%). De glucose en fructose concentratie in honing is verschillend per soort, als er veel
+                            glucose in zit krijg je sneller kristallisatie. Na verloop van tijd kunnen glucosemoleculen
+                            loslaten uit de oplossing en vormen dan kristallen. Kristalisatie van parwa honing is een
+                            teken dat u echte, onbewerkte parwahoning heeft gekocht.
+                        </p>
+                    </div>
+
+                    <div class="faq-item" style="margin-bottom: 2rem;">
+                        <h3
+                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
+                            Wat kan ik doen als mijn honing gekristaliseerd is?</h3>
+                        <p>
+                            U kunt de honing weer vloeibaar maken door het in een pan met warm water te zetten (40
+                            graden, niet te warm!). Laat het even staan en roer het af en toe door. Hierdoor smelten de
+                            kristallen.
+                        </p>
+                    </div>
+
+                    <div class="faq-item" style="margin-bottom: 2rem;">
+                        <h3
+                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
+                            Waarom heeft de honing soms schuim?</h3>
+                        <p>
+                            Tijdens het slingeren en vullen kunnen er luchtbelletjes ingesloten worden in de honing. Die
+                            komen na een poosje naar boven drijven, waar ze een wit laagje op de honing kunnen vormen.
+                            Over het algemeen is schuim op de honing een teken dat u echte onverhitte honing heeft
+                            gekocht. Alleen als er teveel gisten in zitten gaat dit ten koste van de kwaliteit van de
+                            honing.
+                        </p>
+                    </div>
+
+                    <div class="faq-item" style="margin-bottom: 2rem;">
+                        <h3
+                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
+                            Hoe komt de honing aan verschillende smaken?</h3>
+                        <p>
+                            Bijen halen hun nektar van verschillende bloesems van bomen. Elke bloemsoort dus ook de
+                            nektar heeft zijn eigen aroma, welke te proeven is in de honing.
+                        </p>
+                    </div>
+
+                    <div class="faq-item" style="margin-bottom: 2rem;">
+                        <h3
+                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
+                            Hoe lang is honing houdbaar?</h3>
+                        <p>
+                            Honing is erg lang houdbaar. Wij geven een houdbaarheidsdatum van 2 jaren, want na die
+                            periode gaat de kwaliteit van de honing, met name de actieve enzymen, langzaam achteruit. De
+                            honing blijft soms nog jaren geschikt voor consumptie. Als het goed ruikt, kunt u het nog
+                            gebruiken.
+                        </p>
+                    </div>
+
+                    <div class="faq-item" style="margin-bottom: 2rem;">
+                        <h3
+                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
+                            Hoe kan ik de honing het beste bewaren?</h3>
+                        <p>
+                            Honing kunt u het beste op een koele, donkere plek bewaren, bv een keukenkastje. In de
+                            ijskast loopt u de kans dat het dik wordt of sneller kristaliseert. Daarom is
+                            kamertemperatuur het beste.
+                        </p>
+                    </div>
+
+                    <div class="faq-item" style="margin-bottom: 2rem;">
+                        <h3
+                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
+                            Waarom is Surinaamse honing zo dun?</h3>
+                        <p>
+                            Surinaamse honing heeft meestal een hoger vochtgehalte dan buitenlandse honing, omdat in dit
+                            vochtige klimaat de bijen hun honing niet meer ingedampt krijgen.
+                        </p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3
+                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
+                            Hoe weet ik het verschil tussen echte en nephoning?</h3>
+                        <p>
+                            Soms is dit heel moeilijk te achterhalen, want ze kunnen honing tegenwoordig zo goed
+                            namaken. Nagenoeg alle goedkope buitenlandse honingen in de surinaamse supermarkt zijn niet
+                            echt. De prijs is te laag voor een echt product. Een test die u kunt toepassen is: zet een
+                            lepel honing in een glas koud water. Echte honing lost moeilijker op dan nep honing.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+                <p>Voor meer informatie, bel +5978725949.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Producten</h4>
+                    <a href="producten.html">Bosbloemen honing</a>
+                    <a href="producten.html">Parwa Honing</a>
+                    <a href="producten.html">Jamoen Honing</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Over Faboesi</h4>
+                    <a href="about.html">Ons Verhaal</a>
+                    <a href="producten.html">Producten</a>
+                    <a href="winkels.html">Winkels</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <a href="tel:+5978725949">Neem Contact Op</a>
+                    <a href="#">Veelgestelde Vragen</a>
+                    <a href="#">Locatie</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Faboesi. Alle rechten voorbehouden. Suriname 🇸🇷</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

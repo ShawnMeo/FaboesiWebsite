@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faboesi honing verkrijgbaar bij deze winkels in Suriname">
+    <title>Winkels | Faboesi - Uit het Bos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Stores Page Specific Styles */
+        .stores-page {
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        .stores-header {
+            text-align: center;
+            padding: var(--space-2xl) var(--space-md);
+        }
+
+        .stores-header h1 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--neutral-100);
+            margin-bottom: var(--space-md);
+        }
+
+        .stores-header p {
+            color: var(--neutral-400);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .stores-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: var(--space-md);
+        }
+
+        .store-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-md);
+            transition: border-color 0.2s ease;
+        }
+
+        .store-card:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+        }
+
+        .store-name {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            color: var(--honey-400);
+            margin-bottom: var(--space-sm);
+        }
+
+        .store-details {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .store-detail {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--neutral-300);
+            font-size: 0.95rem;
+        }
+
+        .store-detail-icon {
+            width: 20px;
+            text-align: center;
+            color: var(--neutral-500);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--honey-400);
+            text-decoration: none;
+            padding: var(--space-md);
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .back-link:hover {
+            color: var(--honey-300);
+        }
+
+        @media (min-width: 768px) {
+            .stores-header h1 {
+                font-size: 3rem;
+            }
+
+            .store-card {
+                padding: var(--space-xl);
+            }
+
+            .store-details {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: var(--space-lg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="producten.html">Producten</a></li>
+                <li><a href="about.html">Over Ons</a></li>
+                <li><a href="winkels.html" class="active">Winkels</a></li>
+            </ul>
+            <a href="index.html#products" class="nav-cta">Bekijk Producten</a>
+        </div>
+    </nav>
+
+    <main class="stores-page">
+        <a href="index.html" class="back-link">← Terug naar Home</a>
+
+        <div class="stores-header">
+            <h1>Winkels Verkrijgbaar</h1>
+            <p>Faboesi honing is verkrijgbaar bij de volgende winkels in Suriname</p>
+        </div>
+
+        <div class="stores-list">
+            <div class="store-card">
+                <h2 class="store-name">Faboesi Hoofdkantoor</h2>
+                <div class="store-details">
+                    <div class="store-detail">
+                        <span class="store-detail-icon">📍</span>
+                        <span>Peprepinweg 109 (Alle producten verkrijgbaar)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paramaribo & Surroundings -->
+            <div class="store-card">
+                <h2 class="store-name">Paramaribo Centrum & Omgeving</h2>
+                <div class="store-details" style="display: block;">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Ali’s Drugstore</strong> -
+                            Tourtonnelaan (Honing & medicinale producten)</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Lin</strong> - Verlengde
+                            Gemenelandsweg</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Tulip</strong> - Verlengde
+                            Gemenelandsweg</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Combemarkt</strong> -
+                            Grote
+                            Combeweg</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Combe Junior</strong> -
+                            Kwattaweg</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Choi’s</strong> - Johannes
+                            Mungrastraat</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>VCM Slagerij</strong> -
+                            Johannes Mungrastraat</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Weng’s</strong> -
+                            Franchepanestraat</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Wang</strong> - Anton
+                            Drachtenweg 186</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Lee Supermarket</strong> -
+                            H. Benjaminstraat</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Cheng</strong> -
+                            Gompertstraat
+                            124</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Goldenrom</strong> -
+                            Schietbaanweg 17</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Vangou</strong> - J.
+                            Lachmonstraat</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Mahabier</strong> -
+                            Koningsstraat</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Lelydorp & Wanica -->
+            <div class="store-card">
+                <h2 class="store-name">Lelydorp & Wanica</h2>
+                <div class="store-details" style="display: block;">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Mahabier</strong> - Indira
+                            Gandhiweg</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Health and
+                                Rituals</strong>
+                            - Indira Gandhiweg</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Choi’s Lelydorp</strong> -
+                            Indira Gandhiweg</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Super Slagerij</strong> -
+                            Indira Gandhiweg</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Fruittuintje</strong> -
+                            Luchthaven</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Dja foe Lee</strong> -
+                            Lelydorperweg</li>
+                        <li style="margin-bottom: 0.5rem; color: var(--neutral-300);"><strong>Shun Yi Da</strong> -
+                            Bomaweg</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+                <p></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Faboesi - Uit het Bos. Alle rechten voorbehouden. Suriname 🇸🇷</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faboesi - Pure honingen uit Suriname. Beste honing in het Caribisch gebied.">
+    <title>Faboesi - Pure Surinaamse Honing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <!-- Floating Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="producten.html">Producten</a></li>
+                <li><a href="about.html">Over Ons</a></li>
+                <li><a href="winkels.html">Winkels</a></li>
+            </ul>
+            <a href="tel:+5978725949" class="nav-cta">Contact Ons</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <span class="hero-badge">100% Pure Honing</span>
+
+            <!-- Video Container -->
+            <div class="hero-video-container">
+                <video class="hero-video" poster="" autoplay muted loop playsinline>
+                    <source src="videos/Honeysplash.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-overlay"></div>
+            </div>
+
+            <h1 class="hero-title">Faboesi <span class="highlight">Honing</span>
+            </h1>
+            <p class="hero-subtitle">100% pure, rauwe, onverhitte en ongefilterde honing. Puur natuur rechtstreeks uit
+                de
+                ongerepte bossen van Suriname.</p>
+            <div class="hero-cta">
+                <button class="btn-primary" onclick="scrollToProducts()">Bekijk Collectie</button>
+                <a href="winkels.html" class="btn-secondary">Winkels Verkrijgbaar</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="honey-drip"></div>
+            <div class="floating-honeycomb hc-1"><img src="assets/images/logo.png" alt="" class="floating-logo"></div>
+            <div class="floating-honeycomb hc-2"><img src="assets/images/logo.png" alt="" class="floating-logo"></div>
+            <div class="floating-honeycomb hc-3"><img src="assets/images/logo.png" alt="" class="floating-logo"></div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="section-header">
+            <span class="section-badge">Onze Collectie</span>
+            <h2 class="section-title">Pure Honing</h2>
+            <p class="section-subtitle">We hebben meestal de volgende honingsoorten in voorraad: Parwa, Bosbloemen en
+                Mira oedoe.</p>
+        </div>
+
+        <div class="products-grid-home">
+            <!-- Product Card 1 -->
+            <div class="product-card">
+                <div class="product-badge bestseller">Bestseller</div>
+                <div class="product-image-container">
+                    <img src="assets/images/products/parwa.jpg" alt="Parwa Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Mild</span>
+                    <h3 class="product-name">Parwa Honing</h3>
+                    <p class="product-description">Rijke, gouden honing van de parwaboom uit het Surinaamse
+                        regenwoud</p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="assets/images/products/mira_oedoe.jpg" alt="Mira Oedoe Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Sweet</span>
+                    <h3 class="product-name">Mira Oedoe</h3>
+                    <p class="product-description">Unieke honing van de mira oedoe bloesem, een Surinaamse
+                        bosbloem met rijk aroma</p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="assets/images/logo.png" alt="Jamoen Honing" class="product-image"
+                        style="object-fit: contain; padding: 2rem;">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Bitter</span>
+                    <h3 class="product-name">Jamoen</h3>
+                    <p class="product-description">Exclusieve honing uit de mangrovebossen. Bekroond met 3e
+                        prijs beste honing in het Caribisch gebied</p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- View More Button -->
+        <div class="view-more-container">
+            <a href="producten.html" class="btn-secondary">Bekijk Meer</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><img src="assets/images/logo.png" alt="Faboesi" class="feature-logo"></div>
+                <h3>Puur Honing</h3>
+                <p>Pure honing uit bossen, oerwouden en savannes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🐝</div>
+                <h3>Bijententen</h3>
+                <p>Wij gebruiken bijententen om de zuiverste honing te verzamelen.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🇸🇷</div>
+                <h3>100% Surinaams</h3>
+                <p>Lokaal geproduceerd met liefde voor de Surinaamse markt.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="newsletter-content">
+            <h2>Blijf Op de Hoogte</h2>
+            <p>Ontvang nieuws over nieuwe honingoogsten en exclusieve Faboesi aanbiedingen</p>
+            <form class="newsletter-form" onsubmit="handleSubscribe(event)">
+                <input type="email" placeholder="Vul je e-mailadres in" required>
+                <button type="submit">Inschrijven</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+                <p>Voor meer informatie, bel +5978725949.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Producten</h4>
+                    <a href="#">Bosbloemen honing</a>
+                    <a href="#">Parwa Honing</a>
+                    <a href="#">Jamoen Honing</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Over Faboesi</h4>
+                    <a href="about.html">Ons Verhaal</a>
+                    <a href="producten.html">Producten</a>
+                    <a href="tel:+5978725949">Contact</a>
+                    <a href="winkels.html">Winkels</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <a href="#">Neem Contact Op</a>
+                    <a href="#">Veelgestelde Vragen</a>
+                    <a href="#">Locatie</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Faboesi. Alle rechten voorbehouden. Suriname 🇸🇷</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

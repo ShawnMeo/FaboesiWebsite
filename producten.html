@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faboesi Producten - Pure honingen uit Suriname. Ontdek onze collectie.">
+    <title>Producten - Faboesi Pure Surinaamse Honing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Products Page Specific Styles */
+        .products-page {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .products-page-header {
+            text-align: center;
+            padding: var(--space-2xl) var(--space-xl);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .products-page-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            color: var(--neutral-100);
+            margin-bottom: var(--space-md);
+        }
+
+        .products-page-subtitle {
+            font-size: 1.2rem;
+            color: var(--neutral-400);
+            line-height: 1.8;
+        }
+
+        /* Horizontal Product Cards Container */
+        .products-list {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-xl);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-xl);
+        }
+
+        /* Horizontal Product Card */
+        .product-card-horizontal {
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card-horizontal:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+            box-shadow: var(--shadow-card), var(--shadow-glow);
+            transform: translateY(-4px);
+        }
+
+        .product-card-horizontal .product-image-container {
+            flex: none;
+            width: 100%;
+            height: 300px;
+            aspect-ratio: auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(251, 191, 36, 0.05) 0%, transparent 100%);
+            overflow: hidden;
+        }
+
+        .product-card-horizontal .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+
+        .product-card-horizontal:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-card-horizontal .product-glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: var(--transition-slow);
+        }
+
+        .product-card-horizontal:hover .product-glow {
+            opacity: 1;
+        }
+
+        .product-card-horizontal .product-info {
+            flex: 1;
+
+            .product-card-horizontal .product-info {
+                flex: 1;
+                padding: var(--space-xl);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .product-card-horizontal .product-category {
+                display: block;
+                font-size: 0.8rem;
+                color: var(--honey-500);
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                margin-bottom: var(--space-sm);
+            }
+
+            .product-card-horizontal .product-name {
+                font-family: var(--font-display);
+                font-size: 2rem;
+                font-weight: 600;
+                color: var(--neutral-100);
+                margin-bottom: var(--space-md);
+            }
+
+            .product-card-horizontal .product-description {
+                font-size: 1rem;
+                color: var(--neutral-400);
+                line-height: 1.8;
+                margin-bottom: var(--space-lg);
+            }
+
+            .product-card-horizontal .product-meta {
+                display: flex;
+                gap: var(--space-md);
+                flex-wrap: wrap;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .product-card-horizontal .product-size {
+                font-size: 0.9rem;
+                color: var(--neutral-300);
+                background: rgba(255, 255, 255, 0.08);
+                padding: var(--space-sm) var(--space-md);
+                border-radius: var(--radius-md);
+            }
+
+            /* Product Badge - Horizontal */
+            .product-card-horizontal .product-badge {
+                position: absolute;
+                top: var(--space-md);
+                left: var(--space-md);
+                padding: var(--space-xs) var(--space-md);
+                border-radius: var(--radius-full);
+                font-size: 0.75rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                z-index: 10;
+            }
+
+            .product-card-horizontal .product-badge.bestseller {
+                background: linear-gradient(135deg, #f59e0b, #d97706);
+                color: white;
+            }
+
+            /* Responsive */
+            @media (max-width: 768px) {
+                .products-list {
+                    grid-template-columns: 1fr;
+                }
+
+                .product-card-horizontal {
+                    flex-direction: column;
+                }
+
+                .product-card-horizontal .product-image-container {
+                    flex: none;
+                    width: 100%;
+                    height: 250px;
+                }
+
+                .product-card-horizontal .product-info {
+                    padding: var(--space-lg);
+                }
+
+                .product-card-horizontal .product-name {
+                    font-size: 1.5rem;
+                }
+            }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Particles Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="producten.html" class="active">Producten</a></li>
+                <li><a href="about.html">Over Ons</a></li>
+                <li><a href="winkels.html">Winkels</a></li>
+            </ul>
+            <a href="tel:+5978725949" class="nav-cta">Contact Ons</a>
+        </div>
+    </nav>
+
+    <!-- Products Page Content -->
+    <main class="products-page">
+        <div class="products-page-header">
+            <span class="section-badge">Onze Collectie</span>
+            <h1 class="products-page-title">Pure Surinaamse <span class="highlight">Honing</span></h1>
+            <p class="products-page-subtitle">Ontdek onze collectie van pure, onbewerkte honingen uit de mangrovebossen,
+                oerwouden en savannes van Suriname.</p>
+        </div>
+
+        <div class="products-list">
+            <!-- Product Card 1 - Parwa -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <div class="product-badge bestseller">Bestseller</div>
+                    <img src="assets/images/products/parwa.jpg" alt="Parwa Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Mild</span>
+                    <h2 class="product-name">Parwa Honing</h2>
+                    <p class="product-description">
+                        Parwahoning is licht van kleur en heeft een zacht zoete smaak. Uniek aan deze honing is dat het
+                        een klein beetje zout bevat. Na een bepaalde periode (soms maanden, soms jaren) kan de parwa
+                        honing kristaliseren. Uitleg over dit natuurlijke proces kunt u op deze website vinden bij veel
+                        gestelde vragen. Parwahoning is goed voor het behandelen van wonden en het verzorgen van de
+                        huid. De zachte smaak past goed in thee en yoghurt.
+                        <br><br>
+                        De parwaboom (Avicennia germinans) is een mangrovesoort die groeit langs de kust en soms in de
+                        kustvlakte langs de rivieren. Deze boom komt heel veel voor in Coronie. Ze bloeit meestal van
+                        september tot en met december.
+                    </p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 2 - Mira Oedoe -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="assets/images/products/mira_oedoe.jpg" alt="Mira Oedoe Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Sweet</span>
+                    <h2 class="product-name">Mira Oedoe</h2>
+                    <p class="product-description">
+                        Deze honing is dik en zoet, altijd geliefd bij kinderen. Het is een goede honing om interne
+                        ontstekingen en darmproblemen te behandelen. Ook lekker in recepten met honing.
+                        <br><br>
+                        De boom Mira oedoe (Mierenhout, Triplaris surinamensis), groeit in de swampgebieden van de
+                        kustvlakte van Suriname. Ze bloeit meestal in september, de witten en roodachtige bloeiwijzen
+                        zijn zeer opvallend. Na het bloeien regent het ‘helikopter’ zaadjes, die ook op ons label
+                        voorkomen.
+                    </p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 3 - Jamoen -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="assets/images/logo.png" alt="Jamoen Honing" class="product-image"
+                        style="object-fit: contain; padding: 2rem;">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Bitter</span>
+                    <h2 class="product-name">Jamoen</h2>
+                    <p class="product-description">
+                        Een hele donkere honing met een sterke smaak, de nektar van de bloemen is zoet en wrang zoals de
+                        bes. Helpt bij suikerziekte, hoge bloeddruk, hartklachten en overgewicht.
+                        <br><br>
+                        De boom (Syzygium cuminii) groeit veel in de kustvlakte langs randen van weilanden. Ze bloeit
+                        meestal in augustus. De paarse bessen worden gegeten en gebruikt voor het maken van wijn.
+                    </p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 4 - Bosbloemen -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="assets/images/logo.png" alt="Bosbloemen Honing" class="product-image"
+                        style="object-fit: contain; padding: 2rem;">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Mild</span>
+                    <h2 class="product-name">Bosbloemen</h2>
+                    <p class="product-description">
+                        Een heerlijk zoete, kruidige honing en een mix van verschillende boomsoorten. Deze honing is
+                        goed voor het versterken van de weerstand en geeft energie.
+                        <br><br>
+                        De honing wordt gewonnen in het bos en savannegebied achter Zanderij. Daar zijn vele soorten
+                        bomen waarvan onze bijen de nectar vinden, waaronder Swiet meri, verschillende soorten lianen,
+                        en bomen en struiken van de families Myrtaceae en Malpighiaceae.
+                    </p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+        </div>
+
+        <div class="products-page-header" style="margin-top: var(--space-4xl);">
+            <h2 class="products-page-title" style="font-size: 2.5rem;">Andere <span
+                    class="highlight">Bijenproducten</span></h2>
+            <p class="products-page-subtitle">Naast heerlijke honing bieden wij ook andere gezonde producten uit de
+                bijenkast.</p>
+        </div>
+
+        <div class="products-list">
+            <!-- Propolis Tinctuur -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="assets/images/products/propolis.jpg" alt="Propolis Tinctuur" class="product-image"
+                        style="object-fit: cover;">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-name">Propolis Tinctuur</h2>
+                    <p class="product-description">
+                        Propolis is een kleverige, harsachtige substantie die de bijen maken. De bijen verzamelen de
+                        harsen van bomen en mengen dit met hun eigen speeksel, enzymen en bijenwas.
+                        <br><br>
+                        Wij maken er een tinctuur van (70% alc, 10% propolis), die een sterke antibacteriële, antivirale
+                        en ontstekingsremmende werking heeft. U kunt het gebruiken op wondjes, om uw immuunsysteem te
+                        versterken, tegen kiespijn en keelpijn.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Bijenbrood -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="assets/images/logo.png" alt="Bijenbrood" class="product-image"
+                        style="object-fit: contain; padding: 2rem;">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-name">Bijenbrood</h2>
+                    <p class="product-description">
+                        Bijen verzamelen stuifmeel om zelf te eten en hun larven te voeden. Ze mengen het met honing,
+                        propolis en enzymen en bewaren om het op te slaan. Dit wordt bijenbrood genoemd. Het zit
+                        boordevol met essentiële vitaminen en mineralen, wat het zeer geschikt maakt om te gebruiken na
+                        ziekte of bij zwakte. Een halve theelepel per dag.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Raathoning -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="assets/images/products/raathoning.jpg" alt="Raathoning" class="product-image"
+                        style="object-fit: cover;">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-name">Raathoning</h2>
+                    <p class="product-description">
+                        Een stukje honingraat van verse was vol honing. Lekker om te snoepen, goed voor de maag.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Immuun Booster -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="assets/images/products/immuun_booster.jpg" alt="Immuun Booster" class="product-image"
+                        style="object-fit: cover;">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-name">Immuun Booster</h2>
+                    <p class="product-description">
+                        Een combinatie van honing met propolis, geeft een goede weerstand, helpt voorkomen en herstellen
+                        van griep. Ook goed voor interne en externe ontstekingen. Het geeft energie. Een lepel in de
+                        morgen en eventueel in de avond of wanneer energie laag is.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Zalven (Combined) -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="assets/images/products/zalven.jpg" alt="Natuurlijke Zalven" class="product-image"
+                        style="object-fit: cover;">
+                </div>
+                <div class="product-info">
+                    <h2 class="product-name">Natuurlijke Zalven</h2>
+                    <p class="product-description">
+                        <strong>Propolis Zalf:</strong> Sterke anti-bacteriële werking. Helpt tegen huidontstekingen,
+                        jeuk, uitslag en schimmels.<br>
+                        <strong>Propolis Crème:</strong> Licht anti-bacterieel. Werkt als dag/nachtcrème tegen puistjes
+                        en zonnebrand.<br>
+                        <strong>Honing Zalf:</strong> Verzachtend en herstellend. Voor (slecht genezende) wonden,
+                        brandwonden en schaafplekken.<br>
+                        <strong>Neus/Lip Zalf:</strong> Tegen hooikoorts, stofallergie en wondjes.<br>
+                        <strong>Honingmosterd Zalf:</strong> Tegen kneuzingen, zwellingen, blauwe plekken en spierpijn.
+                    </p>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <img src="assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
+                <span class="logo-text">Faboesi</span>
+                <p>Voor meer informatie, bel 8725949.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Producten</h4>
+                    <a href="#">Bosbloemen honing</a>
+                    <a href="#">Parwa Honing</a>
+                    <a href="#">Jamoen Honing</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Over Faboesi</h4>
+                    <a href="about.html">Ons Verhaal</a>
+                    <a href="producten.html">Producten</a>
+                    <a href="winkels.html">Winkels</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <a href="#">Neem Contact Op</a>
+                    <a href="#">Veelgestelde Vragen</a>
+                    <a href="#">Locatie</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Faboesi. Alle rechten voorbehouden. Suriname 🇸🇷</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
