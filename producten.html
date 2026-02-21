@@ -85,6 +85,7 @@
             height: 100%;
             object-fit: cover;
             transition: var(--transition-slow);
+            cursor: pointer;
         }
 
         .product-card-horizontal:hover .product-image {
@@ -99,12 +100,76 @@
             border-radius: 50%;
             opacity: 0;
             transition: var(--transition-slow);
+            pointer-events: none;
         }
 
         .product-card-horizontal:hover .product-glow {
             opacity: 1;
         }
 
+        /* Inline Carousel */
+        .product-image-container.inline-carousel {
+            justify-content: flex-start;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(251, 191, 36, 0.5) transparent;
+        }
+
+        .product-image-container.inline-carousel::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .product-image-container.inline-carousel::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .product-image-container.inline-carousel::-webkit-scrollbar-thumb {
+            background-color: var(--honey-500);
+            border-radius: 10px;
+        }
+
+        .product-image-container.inline-carousel .product-image {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+        }
+
+        .product-card-horizontal:hover .inline-carousel .product-image {
+            transform: none;
+            /* Disable hover scale to avoid jittering when scrolling */
+        }
+
+        .inline-carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .inline-carousel-btn:hover {
+            background: var(--honey-500);
+            border-color: var(--honey-400);
+        }
+
+        .inline-carousel-btn.prev {
+            left: 10px;
+        }
+
+        .inline-carousel-btn.next {
+            right: 10px;
+        }
 
         .product-card-horizontal .product-info {
             flex: 1;
@@ -290,8 +355,7 @@
             <!-- Product Card 3 - Jamoen -->
             <article class="product-card-horizontal">
                 <div class="product-image-container">
-                    <img src="Assets/images/logo.png" alt="Jamoen Honing" class="product-image"
-                        style="object-fit: contain; padding: 2rem;">
+                    <img src="Assets/images/products/jamoen.jpg" alt="Jamoen Honing" class="product-image">
                     <div class="product-glow"></div>
                 </div>
                 <div class="product-info">
@@ -337,6 +401,51 @@
                     </div>
                 </div>
             </article>
+
+            <!-- Product Card 5 - Savanne -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="Assets/images/products/savanne.jpg" alt="Savanne Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Kruidig</span>
+                    <h2 class="product-name">Savanne</h2>
+                    <p class="product-description">
+                        Een kruidige honing, met een licht bittere nasmaak. Het heeft dezelfde werking als bosbloemen.
+                        Deze honing vinden we als de savanne bloeit.
+                    </p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product Card 6 - Tapirira -->
+            <article class="product-card-horizontal">
+                <div class="product-image-container">
+                    <img src="Assets/images/products/tapirira.jpg" alt="Tapirira Honing" class="product-image">
+                    <div class="product-glow"></div>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Krachtig / Kruidig</span>
+                    <h2 class="product-name">Tapirira</h2>
+                    <p class="product-description">
+                        Een honing met een krachtige, zoete, zware kruidige smaak. Het is goed voor de huid en wonden en
+                        urinary problemen, en helpt de bloedruk verlagen. Smaakt goed bij vlees voor de gril of bbq.
+                        <br><br>
+                        Het is familie van de mango en cashew, en wordt ook wel Swiet siri genoemd, omdat je de besjes
+                        kunt eten. Het groeit in de kustvlakte en in het bos.
+                    </p>
+                    <div class="product-meta">
+                        <span class="product-size">250 ml</span>
+                        <span class="product-size">500 ml</span>
+                        <span class="product-size">1L</span>
+                    </div>
+                </div>
+            </article>
         </div>
         </div>
 
@@ -370,8 +479,8 @@
             <!-- Bijenbrood -->
             <article class="product-card-horizontal">
                 <div class="product-image-container">
-                    <img src="Assets/images/logo.png" alt="Bijenbrood" class="product-image"
-                        style="object-fit: contain; padding: 2rem;">
+                    <img src="Assets/images/products/brood.jpg" alt="Bijenbrood" class="product-image"
+                        style="object-fit: cover;">
                 </div>
                 <div class="product-info">
                     <h2 class="product-name">Bijenbrood</h2>
@@ -416,9 +525,19 @@
 
             <!-- Zalven (Combined) -->
             <article class="product-card-horizontal">
-                <div class="product-image-container">
-                    <img src="Assets/images/products/zalven.jpg" alt="Natuurlijke Zalven" class="product-image"
-                        style="object-fit: cover;">
+                <div style="position: relative; width: 100%;">
+                    <button class="inline-carousel-btn prev"
+                        onclick="event.stopPropagation(); this.parentElement.querySelector('.inline-carousel').scrollBy({left: -320, behavior: 'smooth'})">❮</button>
+                    <button class="inline-carousel-btn next"
+                        onclick="event.stopPropagation(); this.parentElement.querySelector('.inline-carousel').scrollBy({left: 320, behavior: 'smooth'})">❯</button>
+                    <div class="product-image-container inline-carousel">
+                        <img src="Assets/images/products/zalven.jpg" alt="Natuurlijke Zalven" class="product-image"
+                            style="object-fit: cover;">
+                        <img src="Assets/images/products/propolis_creme.jpg" alt="Propolis Creme" class="product-image"
+                            style="object-fit: cover;">
+                        <img src="Assets/images/products/neus_zalf.jpg" alt="Neus Zalf" class="product-image"
+                            style="object-fit: cover;">
+                    </div>
                 </div>
                 <div class="product-info">
                     <h2 class="product-name">Natuurlijke Zalven</h2>
@@ -467,7 +586,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Faboesi. Alle rechten voorbehouden. Suriname 🇸🇷</p>
+            <p>© 2026 Faboesi. Alle rechten voorbehouden. Suriname 🇸🇷</p>
         </div>
     </footer>
 

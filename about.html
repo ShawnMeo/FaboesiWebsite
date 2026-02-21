@@ -68,7 +68,7 @@
             transition: var(--transition-slow);
         }
 
-        .about-section:hover .about-image {
+        .about-section:hover .about-image:not(.no-zoom) {
             transform: scale(1.05);
         }
 
@@ -137,7 +137,8 @@
             <!-- Story Section -->
             <section class="about-section">
                 <div class="about-image-container">
-                    <img src="Assets/images/parwa_bottle.png" alt="Pure Honing" class="about-image">
+                    <img src="Assets/images/about/team.jpg" alt="Frank en Mariska van der Sluys"
+                        class="about-image no-zoom">
                 </div>
                 <div class="about-text">
                     <h2>Onze Geschiedenis</h2>
@@ -160,8 +161,9 @@
 
             <!-- Full Width Banner -->
             <section class="banner-section"
-                style="width: 100%; height: 400px; background-color: var(--neutral-100); border-radius: var(--radius-2xl); margin-bottom: var(--space-4xl); overflow: hidden;">
-                <!-- Placeholder for full width image -->
+                style="width: 100%; height: 400px; border-radius: var(--radius-2xl); margin-bottom: var(--space-4xl); overflow: hidden;">
+                <img src="Assets/images/about/banner01.png" alt="Faboesi Bijenteelt Banner"
+                    style="width: 100%; height: 100%; object-fit: cover;">
             </section>
 
             <!-- Mission Section -->
@@ -342,7 +344,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2025 Faboesi. Alle rechten voorbehouden. Suriname 🇸🇷</p>
+            <p>© 2026 Faboesi. Alle rechten voorbehouden. Suriname 🇸🇷</p>
         </div>
     </footer>
 

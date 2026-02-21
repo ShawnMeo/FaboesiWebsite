@@ -345,6 +345,53 @@ function initScrollAnimations() {
 }
 
 // ============================================
+// IMAGE LIGHTBOX MODAL
+// ============================================
+
+function initImageModal() {
+    // Create modal HTML
+    const modalHTML = `
+        <div class="image-modal" id="globalImageModal">
+            <span class="image-modal-close" id="globalImageModalClose">&times;</span>
+            <img class="image-modal-content" id="globalImageModalImg">
+        </div>
+    `;
+
+    // Append to body if not already there
+    if (!document.getElementById('globalImageModal')) {
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
+
+    const modal = document.getElementById('globalImageModal');
+    const modalImg = document.getElementById('globalImageModalImg');
+    const closeBtn = document.getElementById('globalImageModalClose');
+    const images = document.querySelectorAll('.product-image'); // select all product images
+
+    images.forEach(img => {
+        img.addEventListener('click', () => {
+            modal.classList.add('active');
+            modalImg.src = img.src;
+        });
+    });
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+}
+
+// ============================================
 // INITIALIZE EVERYTHING
 // ============================================
 
@@ -357,6 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize interactive elements
     initAddToCartButtons();
     initScrollAnimations();
+    initImageModal();
 
     console.log('🍯 Golden Harvest loaded successfully!');
 });
