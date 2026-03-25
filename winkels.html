@@ -124,18 +124,28 @@
                 <img src="Assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
                 <span class="logo-text">Faboesi</span>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="producten.html">Producten</a></li>
+                <li><a href="producten.html">Honing soorten</a></li>
+                <li><a href="andere-producten.html">Bijenproducten</a></li>
+                <li><a href="puur-natuur.html">Honing en Gezondheid</a></li>
                 <li><a href="about.html">Over Ons</a></li>
-                <li><a href="winkels.html" class="active">Winkels</a></li>
+                <li class="desktop-only"><a href="winkels.html" class="active">Winkels</a></li>
+                <li class="mobile-only"><a href="winkels.html" class="active nav-shops">Winkels Verkrijgbaar</a></li>
+
             </ul>
-            <a href="index.html#products" class="nav-cta">Bekijk Producten</a>
+            <div class="nav-actions">
+                <a href="index.html#products" class="nav-cta">Bekijk Producten</a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
     <main class="stores-page">
-        <a href="index.html" class="back-link">← Terug naar Home</a>
 
         <div class="stores-header">
             <h1>Winkels Verkrijgbaar</h1>
@@ -231,6 +241,7 @@
             <p>© 2026 Faboesi - Uit het Bos. Alle rechten voorbehouden. Suriname 🇸🇷</p>
         </div>
     </footer>
+    <script src="Assets/js/script.js"></script>
 </body>
 
 </html>

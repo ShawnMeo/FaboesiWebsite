@@ -239,6 +239,53 @@ body {
     width: 100%;
 }
 
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0;
+}
+
+.hamburger .bar {
+    width: 100%;
+    height: 2px;
+    background-color: var(--neutral-100);
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: none;
+}
+
 .nav-cta {
     padding: var(--space-sm) var(--space-lg);
     background: var(--gradient-honey);
@@ -309,6 +356,7 @@ body {
     aspect-ratio: 16 / 9;
     display: block;
     background: var(--neutral-900);
+    object-fit: cover;
 }
 
 .hero-video-container .video-overlay {
@@ -914,7 +962,6 @@ body {
 }
 
 .feature-card {
-    flex: 0 1 280px;
     text-align: center;
     padding: var(--space-2xl);
     background: rgba(255, 255, 255, 0.02);
@@ -924,9 +971,17 @@ body {
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(251, 191, 36, 0.2);
-    background: rgba(251, 191, 36, 0.05);
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.feature-link {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    cursor: pointer;
+    flex: 0 1 280px;
 }
 
 .feature-icon {
@@ -947,6 +1002,35 @@ body {
     font-size: 0.95rem;
     color: var(--neutral-400);
     line-height: 1.6;
+}
+
+/* Product Card Collapsible Info */
+.product-info .product-name {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-info .product-name .toggle-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    color: var(--honey-500);
+    margin-left: var(--space-sm);
+}
+
+.product-info .product-name.active .toggle-icon {
+    transform: rotate(180deg);
+}
+
+.product-collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.product-collapsible.active {
+    max-height: 500px;
 }
 
 .feature-logo {
@@ -1120,9 +1204,44 @@ body {
 /* === BASE MOBILE STYLES (320px+) === */
 /* All base styles above are already mobile-optimized */
 
-/* Mobile: Hide nav links, show CTA only */
+/* Mobile Menu Styles */
 .nav-links {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(28, 25, 23, 0.98);
+    backdrop-filter: blur(10px);
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    padding: var(--space-4xl) var(--space-xl);
+    transition: right 0.4s ease;
+    z-index: 1000;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+    display: flex;
+}
+
+.nav-links.active {
+    right: 0;
+}
+
+.nav-links li {
+    margin: var(--space-md) 0;
+}
+
+.mobile-only {
+    display: list-item;
+}
+
+.mobile-only a {
+    color: var(--honey-400);
+}
+
+.hamburger {
+    display: flex;
 }
 
 .navbar {
@@ -1193,12 +1312,12 @@ body {
 }
 
 .features-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
 }
 
 .feature-card {
-    padding: var(--space-lg);
+    padding: var(--space-md);
 }
 
 .newsletter-section {
@@ -1241,10 +1360,6 @@ body {
 @media (min-width: 768px) {
     .navbar {
         padding: var(--space-md) var(--space-lg);
-    }
-
-    .nav-links {
-        display: flex;
     }
 
     .hero {
@@ -1408,4 +1523,64 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--honey-600);
+}
+
+/* ============================================
+   FAQ ACCORDION
+   ============================================ */
+.faq-accordion {
+    width: 100%;
+    margin-top: var(--space-xl);
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0 !important;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: var(--space-md) 0;
+    font-family: var(--font-display);
+    color: var(--neutral-100);
+    font-size: 1.15rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.faq-question:hover {
+    color: var(--honey-400);
+}
+
+.faq-icon {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+    color: var(--honey-500);
+}
+
+.faq-question.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+    padding-bottom: var(--space-md);
+    margin: 0;
+    color: var(--neutral-300);
+    line-height: 1.6;
 }

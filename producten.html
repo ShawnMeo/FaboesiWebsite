@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Faboesi Producten - Pure honingen uit Suriname. Ontdek onze collectie.">
-    <title>Producten - Faboesi Pure Surinaamse Honing</title>
+    <title>Honing soorten - Faboesi Pure Surinaamse Honing</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -277,13 +277,24 @@
                 <img src="Assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
                 <span class="logo-text">Faboesi</span>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="producten.html" class="active">Producten</a></li>
+                <li><a href="producten.html" class="active">Honing soorten</a></li>
+                <li><a href="andere-producten.html">Bijenproducten</a></li>
+                <li><a href="puur-natuur.html">Honing en Gezondheid</a></li>
                 <li><a href="about.html">Over Ons</a></li>
-                <li><a href="winkels.html">Winkels</a></li>
+                <li class="desktop-only"><a href="winkels.html">Winkels</a></li>
+                <li class="mobile-only"><a href="winkels.html" class="nav-shops">Winkels Verkrijgbaar</a></li>
+
             </ul>
-            <a href="tel:+5978725949" class="nav-cta">Contact Ons</a>
+            <div class="nav-actions">
+                <a href="https://wa.me/5978725949" class="nav-cta">Contact Ons</a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -306,22 +317,24 @@
                 </div>
                 <div class="product-info">
                     <span class="product-category">Mild</span>
-                    <h2 class="product-name">Parwa Honing</h2>
-                    <p class="product-description">
-                        Parwahoning is licht van kleur en heeft een zacht zoete smaak. Uniek aan deze honing is dat het
-                        een klein beetje zout bevat. Na een bepaalde periode (soms maanden, soms jaren) kan de parwa
-                        honing kristaliseren. Uitleg over dit natuurlijke proces kunt u op deze website vinden bij veel
-                        gestelde vragen. Parwahoning is goed voor het behandelen van wonden en het verzorgen van de
-                        huid. De zachte smaak past goed in thee en yoghurt.
-                        <br><br>
-                        De parwaboom (Avicennia germinans) is een mangrovesoort die groeit langs de kust en soms in de
-                        kustvlakte langs de rivieren. Deze boom komt heel veel voor in Coronie. Ze bloeit meestal van
-                        september tot en met december.
-                    </p>
-                    <div class="product-meta">
-                        <span class="product-size">250 ml</span>
-                        <span class="product-size">500 ml</span>
-                        <span class="product-size">1L</span>
+                    <h2 class="product-name">Parwa Honing <span class="toggle-icon">▼</span></h2>
+                    <div class="product-collapsible">
+                        <p class="product-description">
+                            Parwahoning is licht van kleur en heeft een zacht zoete smaak. Uniek aan deze honing is dat het
+                            een klein beetje zout bevat. Na een bepaalde periode (soms maanden, soms jaren) kan de parwa
+                            honing kristaliseren. Uitleg over dit natuurlijke proces kunt u op deze website vinden bij veel
+                            gestelde vragen. Parwahoning is goed voor het behandelen van wonden en het verzorgen van de
+                            huid. De zachte smaak past goed in thee en yoghurt.
+                            <br><br>
+                            De parwaboom (Avicennia germinans) is een mangrovesoort die groeit langs de kust en soms in de
+                            kustvlakte langs de rivieren. Deze boom komt heel veel voor in Coronie. Ze bloeit meestal van
+                            september tot en met december.
+                        </p>
+                        <div class="product-meta">
+                            <span class="product-size">250 ml</span>
+                            <span class="product-size">500 ml</span>
+                            <span class="product-size">1L</span>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -334,20 +347,22 @@
                 </div>
                 <div class="product-info">
                     <span class="product-category">Sweet</span>
-                    <h2 class="product-name">Mira Oedoe</h2>
-                    <p class="product-description">
-                        Deze honing is dik en zoet, altijd geliefd bij kinderen. Het is een goede honing om interne
-                        ontstekingen en darmproblemen te behandelen. Ook lekker in recepten met honing.
-                        <br><br>
-                        De boom Mira oedoe (Mierenhout, Triplaris surinamensis), groeit in de swampgebieden van de
-                        kustvlakte van Suriname. Ze bloeit meestal in september, de witten en roodachtige bloeiwijzen
-                        zijn zeer opvallend. Na het bloeien regent het ‘helikopter’ zaadjes, die ook op ons label
-                        voorkomen.
-                    </p>
-                    <div class="product-meta">
-                        <span class="product-size">250 ml</span>
-                        <span class="product-size">500 ml</span>
-                        <span class="product-size">1L</span>
+                    <h2 class="product-name">Mira Oedoe <span class="toggle-icon">▼</span></h2>
+                    <div class="product-collapsible">
+                        <p class="product-description">
+                            Deze honing is dik en zoet, altijd geliefd bij kinderen. Het is een goede honing om interne
+                            ontstekingen en darmproblemen te behandelen. Ook lekker in recepten met honing.
+                            <br><br>
+                            De boom Mira oedoe (Mierenhout, Triplaris surinamensis), groeit in de swampgebieden van de
+                            kustvlakte van Suriname. Ze bloeit meestal in september, de witten en roodachtige bloeiwijzen
+                            zijn zeer opvallend. Na het bloeien regent het ‘helikopter’ zaadjes, die ook op ons label
+                            voorkomen.
+                        </p>
+                        <div class="product-meta">
+                            <span class="product-size">250 ml</span>
+                            <span class="product-size">500 ml</span>
+                            <span class="product-size">1L</span>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -360,18 +375,20 @@
                 </div>
                 <div class="product-info">
                     <span class="product-category">Bitter</span>
-                    <h2 class="product-name">Jamoen</h2>
-                    <p class="product-description">
-                        Een hele donkere honing met een sterke smaak, de nektar van de bloemen is zoet en wrang zoals de
-                        bes. Helpt bij suikerziekte, hoge bloeddruk, hartklachten en overgewicht.
-                        <br><br>
-                        De boom (Syzygium cuminii) groeit veel in de kustvlakte langs randen van weilanden. Ze bloeit
-                        meestal in augustus. De paarse bessen worden gegeten en gebruikt voor het maken van wijn.
-                    </p>
-                    <div class="product-meta">
-                        <span class="product-size">250 ml</span>
-                        <span class="product-size">500 ml</span>
-                        <span class="product-size">1L</span>
+                    <h2 class="product-name">Jamoen <span class="toggle-icon">▼</span></h2>
+                    <div class="product-collapsible">
+                        <p class="product-description">
+                            Een hele donkere honing met een sterke smaak, de nektar van de bloemen is zoet en wrang zoals de
+                            bes. Helpt bij suikerziekte, hoge bloeddruk, hartklachten en overgewicht.
+                            <br><br>
+                            De boom (Syzygium cuminii) groeit veel in de kustvlakte langs randen van weilanden. Ze bloeit
+                            meestal in augustus. De paarse bessen worden gegeten en gebruikt voor het maken van wijn.
+                        </p>
+                        <div class="product-meta">
+                            <span class="product-size">250 ml</span>
+                            <span class="product-size">500 ml</span>
+                            <span class="product-size">1L</span>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -379,25 +396,26 @@
             <!-- Product Card 4 - Bosbloemen -->
             <article class="product-card-horizontal">
                 <div class="product-image-container">
-                    <img src="Assets/images/logo.png" alt="Bosbloemen Honing" class="product-image"
-                        style="object-fit: contain; padding: 2rem;">
+                    <img src="Assets/images/products/bosbloemen.jpg" alt="Bosbloemen Honing" class="product-image">
                     <div class="product-glow"></div>
                 </div>
                 <div class="product-info">
                     <span class="product-category">Mild</span>
-                    <h2 class="product-name">Bosbloemen</h2>
-                    <p class="product-description">
-                        Een heerlijk zoete, kruidige honing en een mix van verschillende boomsoorten. Deze honing is
-                        goed voor het versterken van de weerstand en geeft energie.
-                        <br><br>
-                        De honing wordt gewonnen in het bos en savannegebied achter Zanderij. Daar zijn vele soorten
-                        bomen waarvan onze bijen de nectar vinden, waaronder Swiet meri, verschillende soorten lianen,
-                        en bomen en struiken van de families Myrtaceae en Malpighiaceae.
-                    </p>
-                    <div class="product-meta">
-                        <span class="product-size">250 ml</span>
-                        <span class="product-size">500 ml</span>
-                        <span class="product-size">1L</span>
+                    <h2 class="product-name">Bosbloemen <span class="toggle-icon">▼</span></h2>
+                    <div class="product-collapsible">
+                        <p class="product-description">
+                            Een heerlijk zoete, kruidige honing en een mix van verschillende boomsoorten. Deze honing is
+                            goed voor het versterken van de weerstand en geeft energie.
+                            <br><br>
+                            De honing wordt gewonnen in het bos en savannegebied achter Zanderij. Daar zijn vele soorten
+                            bomen waarvan onze bijen de nectar vinden, waaronder Swiet meri, verschillende soorten lianen,
+                            en bomen en struiken van de families Myrtaceae en Malpighiaceae.
+                        </p>
+                        <div class="product-meta">
+                            <span class="product-size">250 ml</span>
+                            <span class="product-size">500 ml</span>
+                            <span class="product-size">1L</span>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -410,15 +428,17 @@
                 </div>
                 <div class="product-info">
                     <span class="product-category">Kruidig</span>
-                    <h2 class="product-name">Savanne</h2>
-                    <p class="product-description">
-                        Een kruidige honing, met een licht bittere nasmaak. Het heeft dezelfde werking als bosbloemen.
-                        Deze honing vinden we als de savanne bloeit.
-                    </p>
-                    <div class="product-meta">
-                        <span class="product-size">250 ml</span>
-                        <span class="product-size">500 ml</span>
-                        <span class="product-size">1L</span>
+                    <h2 class="product-name">Savanne <span class="toggle-icon">▼</span></h2>
+                    <div class="product-collapsible">
+                        <p class="product-description">
+                            Een kruidige honing, met een licht bittere nasmaak. Het heeft dezelfde werking als bosbloemen.
+                            Deze honing vinden we als de savanne bloeit.
+                        </p>
+                        <div class="product-meta">
+                            <span class="product-size">250 ml</span>
+                            <span class="product-size">500 ml</span>
+                            <span class="product-size">1L</span>
+                        </div>
                     </div>
                 </div>
             </article>
@@ -431,129 +451,27 @@
                 </div>
                 <div class="product-info">
                     <span class="product-category">Krachtig / Kruidig</span>
-                    <h2 class="product-name">Tapirira</h2>
-                    <p class="product-description">
-                        Een honing met een krachtige, zoete, zware kruidige smaak. Het is goed voor de huid en wonden en
-                        urinary problemen, en helpt de bloedruk verlagen. Smaakt goed bij vlees voor de gril of bbq.
-                        <br><br>
-                        Het is familie van de mango en cashew, en wordt ook wel Swiet siri genoemd, omdat je de besjes
-                        kunt eten. Het groeit in de kustvlakte en in het bos.
-                    </p>
-                    <div class="product-meta">
-                        <span class="product-size">250 ml</span>
-                        <span class="product-size">500 ml</span>
-                        <span class="product-size">1L</span>
+                    <h2 class="product-name">Tapirira <span class="toggle-icon">▼</span></h2>
+                    <div class="product-collapsible">
+                        <p class="product-description">
+                            Een honing met een krachtige, zoete, zware kruidige smaak. Het is goed voor de huid en wonden en
+                            urinary problemen, en helpt de bloedruk verlagen. Smaakt goed bij vlees voor de gril of bbq.
+                            <br><br>
+                            Het is familie van de mango en cashew, en wordt ook wel Swiet siri genoemd, omdat je de besjes
+                            kunt eten. Het groeit in de kustvlakte en in het bos.
+                        </p>
+                        <div class="product-meta">
+                            <span class="product-size">250 ml</span>
+                            <span class="product-size">500 ml</span>
+                            <span class="product-size">1L</span>
+                        </div>
                     </div>
                 </div>
             </article>
         </div>
         </div>
 
-        <div class="products-page-header" style="margin-top: var(--space-4xl);">
-            <h2 class="products-page-title" style="font-size: 2.5rem;">Andere <span
-                    class="highlight">Bijenproducten</span></h2>
-            <p class="products-page-subtitle">Naast heerlijke honing bieden wij ook andere gezonde producten uit de
-                bijenkast.</p>
-        </div>
 
-        <div class="products-list">
-            <!-- Propolis Tinctuur -->
-            <article class="product-card-horizontal">
-                <div class="product-image-container">
-                    <img src="Assets/images/products/propolis.jpg" alt="Propolis Tinctuur" class="product-image"
-                        style="object-fit: cover;">
-                </div>
-                <div class="product-info">
-                    <h2 class="product-name">Propolis Tinctuur</h2>
-                    <p class="product-description">
-                        Propolis is een kleverige, harsachtige substantie die de bijen maken. De bijen verzamelen de
-                        harsen van bomen en mengen dit met hun eigen speeksel, enzymen en bijenwas.
-                        <br><br>
-                        Wij maken er een tinctuur van (70% alc, 10% propolis), die een sterke antibacteriële, antivirale
-                        en ontstekingsremmende werking heeft. U kunt het gebruiken op wondjes, om uw immuunsysteem te
-                        versterken, tegen kiespijn en keelpijn.
-                    </p>
-                </div>
-            </article>
-
-            <!-- Bijenbrood -->
-            <article class="product-card-horizontal">
-                <div class="product-image-container">
-                    <img src="Assets/images/products/brood.jpg" alt="Bijenbrood" class="product-image"
-                        style="object-fit: cover;">
-                </div>
-                <div class="product-info">
-                    <h2 class="product-name">Bijenbrood</h2>
-                    <p class="product-description">
-                        Bijen verzamelen stuifmeel om zelf te eten en hun larven te voeden. Ze mengen het met honing,
-                        propolis en enzymen en bewaren om het op te slaan. Dit wordt bijenbrood genoemd. Het zit
-                        boordevol met essentiële vitaminen en mineralen, wat het zeer geschikt maakt om te gebruiken na
-                        ziekte of bij zwakte. Een halve theelepel per dag.
-                    </p>
-                </div>
-            </article>
-
-            <!-- Raathoning -->
-            <article class="product-card-horizontal">
-                <div class="product-image-container">
-                    <img src="Assets/images/products/raathoning.jpg" alt="Raathoning" class="product-image"
-                        style="object-fit: cover;">
-                </div>
-                <div class="product-info">
-                    <h2 class="product-name">Raathoning</h2>
-                    <p class="product-description">
-                        Een stukje honingraat van verse was vol honing. Lekker om te snoepen, goed voor de maag.
-                    </p>
-                </div>
-            </article>
-
-            <!-- Immuun Booster -->
-            <article class="product-card-horizontal">
-                <div class="product-image-container">
-                    <img src="Assets/images/products/immuun_booster.jpg" alt="Immuun Booster" class="product-image"
-                        style="object-fit: cover;">
-                </div>
-                <div class="product-info">
-                    <h2 class="product-name">Immuun Booster</h2>
-                    <p class="product-description">
-                        Een combinatie van honing met propolis, geeft een goede weerstand, helpt voorkomen en herstellen
-                        van griep. Ook goed voor interne en externe ontstekingen. Het geeft energie. Een lepel in de
-                        morgen en eventueel in de avond of wanneer energie laag is.
-                    </p>
-                </div>
-            </article>
-
-            <!-- Zalven (Combined) -->
-            <article class="product-card-horizontal">
-                <div style="position: relative; width: 100%;">
-                    <button class="inline-carousel-btn prev"
-                        onclick="event.stopPropagation(); this.parentElement.querySelector('.inline-carousel').scrollBy({left: -320, behavior: 'smooth'})">❮</button>
-                    <button class="inline-carousel-btn next"
-                        onclick="event.stopPropagation(); this.parentElement.querySelector('.inline-carousel').scrollBy({left: 320, behavior: 'smooth'})">❯</button>
-                    <div class="product-image-container inline-carousel">
-                        <img src="Assets/images/products/zalven.jpg" alt="Natuurlijke Zalven" class="product-image"
-                            style="object-fit: cover;">
-                        <img src="Assets/images/products/propolis_creme.jpg" alt="Propolis Creme" class="product-image"
-                            style="object-fit: cover;">
-                        <img src="Assets/images/products/neus_zalf.jpg" alt="Neus Zalf" class="product-image"
-                            style="object-fit: cover;">
-                    </div>
-                </div>
-                <div class="product-info">
-                    <h2 class="product-name">Natuurlijke Zalven</h2>
-                    <p class="product-description">
-                        <strong>Propolis Zalf:</strong> Sterke anti-bacteriële werking. Helpt tegen huidontstekingen,
-                        jeuk, uitslag en schimmels.<br>
-                        <strong>Propolis Crème:</strong> Licht anti-bacterieel. Werkt als dag/nachtcrème tegen puistjes
-                        en zonnebrand.<br>
-                        <strong>Honing Zalf:</strong> Verzachtend en herstellend. Voor (slecht genezende) wonden,
-                        brandwonden en schaafplekken.<br>
-                        <strong>Neus/Lip Zalf:</strong> Tegen hooikoorts, stofallergie en wondjes.<br>
-                        <strong>Honingmosterd Zalf:</strong> Tegen kneuzingen, zwellingen, blauwe plekken en spierpijn.
-                    </p>
-                </div>
-            </article>
-        </div>
     </main>
 
     <!-- Footer -->
@@ -566,22 +484,20 @@
             </div>
             <div class="footer-links">
                 <div class="footer-column">
-                    <h4>Producten</h4>
-                    <a href="#">Bosbloemen honing</a>
-                    <a href="#">Parwa Honing</a>
-                    <a href="#">Jamoen Honing</a>
+                    <h4>Honing soorten</h4>
+                    <a href="producten.html">Onze Honing</a>
+                    <a href="andere-producten.html">Bijenproducten</a>
                 </div>
                 <div class="footer-column">
                     <h4>Over Faboesi</h4>
-                    <a href="about.html">Ons Verhaal</a>
-                    <a href="producten.html">Producten</a>
-                    <a href="winkels.html">Winkels</a>
+                    <a href="about.html">Over Ons</a>
+                    <a href="puur-natuur.html">Honing en Gezondheid</a>
                 </div>
                 <div class="footer-column">
                     <h4>Contact</h4>
                     <a href="#">Neem Contact Op</a>
                     <a href="#">Veelgestelde Vragen</a>
-                    <a href="#">Locatie</a>
+                    <a href="winkels.html">Locaties Verkrijgbaar</a>
                 </div>
             </div>
         </div>

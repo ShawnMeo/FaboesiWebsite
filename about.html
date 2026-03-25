@@ -115,13 +115,24 @@
                 <img src="Assets/images/logo.png" alt="Faboesi Logo" class="logo-icon" width="32" height="32">
                 <span class="logo-text">Faboesi</span>
             </a>
-            <ul class="nav-links">
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="producten.html">Producten</a></li>
+                <li><a href="producten.html">Honing soorten</a></li>
+                <li><a href="andere-producten.html">Bijenproducten</a></li>
+                <li><a href="puur-natuur.html">Honing en Gezondheid</a></li>
                 <li><a href="about.html" class="active">Over Ons</a></li>
-                <li><a href="winkels.html">Winkels</a></li>
+                <li class="desktop-only"><a href="winkels.html">Winkels</a></li>
+                <li class="mobile-only"><a href="winkels.html" class="nav-shops">Winkels Verkrijgbaar</a></li>
+
             </ul>
-            <a href="tel:+5978725949" class="nav-cta">Contact Ons</a>
+            <div class="nav-actions">
+                <a href="https://wa.me/5978725949" class="nav-cta">Contact Ons</a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -137,7 +148,7 @@
             <!-- Story Section -->
             <section class="about-section">
                 <div class="about-image-container">
-                    <img src="Assets/images/about/team.jpg" alt="Frank en Mariska van der Sluys"
+                    <img src="Assets/images/about-frank-mariska.jpg" alt="Frank en Mariska van der Sluys"
                         class="about-image no-zoom">
                 </div>
                 <div class="about-text">
@@ -159,155 +170,130 @@
                 </div>
             </section>
 
-            <!-- Full Width Banner -->
-            <section class="banner-section"
-                style="width: 100%; height: 400px; border-radius: var(--radius-2xl); margin-bottom: var(--space-4xl); overflow: hidden;">
-                <img src="Assets/images/about/banner01.png" alt="Faboesi Bijenteelt Banner"
-                    style="width: 100%; height: 100%; object-fit: cover;">
-            </section>
 
-            <!-- Mission Section -->
-            <section class="about-section reverse">
-                <div class="about-image-container">
-                    <img src="Assets/images/logo.png" alt="Duurzaamheid" class="about-image"
-                        style="object-fit: contain; padding: 2rem;">
-                </div>
-                <div class="about-text">
-                    <h2>Puur Natuur</h2>
-                    <p>
-                        Faboesi honing is 100% pure, rauwe, onverhitte en ongefilterde honing. Hierdoor zijn alle
-                        natuurlijke enzymen, stuifmeel en bloemenaroma’s waarmee de bijen de honing maken, nog aanwezig.
-                        Puur natuur rechtstreeks uit de ongerepte bossen van Suriname.
-                    </p>
-                    <p>
-                        Wij geven een houdbaarheidsdatum van 2 jaren, want na die periode gaat de kwaliteit van de
-                        honing, met name de actieve enzymen, langzaam achteruit. De honing blijft soms nog jaren
-                        geschikt voor consumptie.
-                    </p>
-                </div>
-            </section>
 
-            <!-- Health Benefits Section -->
-            <section class="about-section">
-                <div class="about-text" style="width: 100%;">
-                    <h2>Gezondheidsvoordelen</h2>
-                    <p>
-                        Honing is een natuurlijke energiebron met een groot aantal voordelen voor de gezondheid. Rauwe
-                        honing bevat veel vitaminen, mineralen, anti-oxidanten en aminozuren. De krachtige
-                        anti-bacteriële en antiseptische eigenschappen van honing helpen onder andere voor de volgende
-                        problemen:
-                    </p>
-                    <ul style="list-style-type: disc; margin-left: 20px; color: var(--neutral-300); line-height: 1.8;">
-                        <li>Het vermindert borstklachten en hoest en verzacht een pijnlijke keel</li>
-                        <li>Het verbetert chronische bronchitis, astma, sinusproblemen en allergieën</li>
-                        <li>Honing versnelt de genezing van wonden en vermindert ontstekingen</li>
-                        <li>Het verzacht de huid en verhelpt huidaandoeningen</li>
-                        <li>Het vergemakkelijkt de spijsvertering en de opname van andere voedingsmiddelen</li>
-                    </ul>
-                    <p style="margin-top: 1rem;">
-                        Deze geneeskrachtige eigenschappen veranderen wanneer honing wordt verhit of onder druk
-                        gefilterd, wat vaak gebeurd bij veel honingen uit de supermarkt. Faboesi honing wordt nooit
-                        verhit, waardoor alle enzymen en anti-microbiële eigenschappen behouden blijven, precies zoals
-                        de natuur het gemaakt heeft.
-                    </p>
-                </div>
-            </section>
+
 
             <!-- FAQ Section -->
             <section class="about-section">
                 <div class="about-text" style="width: 100%;">
                     <h2>Veel Gestelde Vragen</h2>
+                    <div class="faq-accordion">
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Waarom kristaliseert honing?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>
+                                    Honing bestaat voor het grootste deel uit natuurlijke suikers en een deel water (rond de
+                                    20%). De glucose en fructose concentratie in honing is verschillend per soort, als er veel
+                                    glucose in zit krijg je sneller kristallisatie. Na verloop van tijd kunnen glucosemoleculen
+                                    loslaten uit de oplossing en vormen dan kristallen. Kristalisatie van parwa honing is een
+                                    teken dat u echte, onbewerkte parwahoning heeft gekocht.
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="faq-item" style="margin-bottom: 2rem;">
-                        <h3
-                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
-                            Waarom kristaliseert honing?</h3>
-                        <p>
-                            Honing bestaat voor het grootste deel uit natuurlijke suikers en een deel water (rond de
-                            20%). De glucose en fructose concentratie in honing is verschillend per soort, als er veel
-                            glucose in zit krijg je sneller kristallisatie. Na verloop van tijd kunnen glucosemoleculen
-                            loslaten uit de oplossing en vormen dan kristallen. Kristalisatie van parwa honing is een
-                            teken dat u echte, onbewerkte parwahoning heeft gekocht.
-                        </p>
-                    </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Wat kan ik doen als mijn honing gekristaliseerd is?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>
+                                    U kunt de honing weer vloeibaar maken door het in een pan met warm water te zetten (40
+                                    graden, niet te warm!). Laat het even staan en roer het af en toe door. Hierdoor smelten de
+                                    kristallen.
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="faq-item" style="margin-bottom: 2rem;">
-                        <h3
-                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
-                            Wat kan ik doen als mijn honing gekristaliseerd is?</h3>
-                        <p>
-                            U kunt de honing weer vloeibaar maken door het in een pan met warm water te zetten (40
-                            graden, niet te warm!). Laat het even staan en roer het af en toe door. Hierdoor smelten de
-                            kristallen.
-                        </p>
-                    </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Waarom heeft de honing soms schuim?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>
+                                    Tijdens het slingeren en vullen kunnen er luchtbelletjes ingesloten worden in de honing. Die
+                                    komen na een poosje naar boven drijven, waar ze een wit laagje op de honing kunnen vormen.
+                                    Over het algemeen is schuim op de honing een teken dat u echte onverhitte honing heeft
+                                    gekocht. Alleen als er teveel gisten in zitten gaat dit ten koste van de kwaliteit van de
+                                    honing.
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="faq-item" style="margin-bottom: 2rem;">
-                        <h3
-                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
-                            Waarom heeft de honing soms schuim?</h3>
-                        <p>
-                            Tijdens het slingeren en vullen kunnen er luchtbelletjes ingesloten worden in de honing. Die
-                            komen na een poosje naar boven drijven, waar ze een wit laagje op de honing kunnen vormen.
-                            Over het algemeen is schuim op de honing een teken dat u echte onverhitte honing heeft
-                            gekocht. Alleen als er teveel gisten in zitten gaat dit ten koste van de kwaliteit van de
-                            honing.
-                        </p>
-                    </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Hoe komt de honing aan verschillende smaken?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>
+                                    Bijen halen hun nektar van verschillende bloesems van bomen. Elke bloemsoort dus ook de
+                                    nektar heeft zijn eigen aroma, welke te proeven is in de honing.
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="faq-item" style="margin-bottom: 2rem;">
-                        <h3
-                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
-                            Hoe komt de honing aan verschillende smaken?</h3>
-                        <p>
-                            Bijen halen hun nektar van verschillende bloesems van bomen. Elke bloemsoort dus ook de
-                            nektar heeft zijn eigen aroma, welke te proeven is in de honing.
-                        </p>
-                    </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Hoe lang is honing houdbaar?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>
+                                    Honing is erg lang houdbaar. Wij geven een houdbaarheidsdatum van 2 jaren, want na die
+                                    periode gaat de kwaliteit van de honing, met name de actieve enzymen, langzaam achteruit. De
+                                    honing blijft soms nog jaren geschikt voor consumptie. Als het goed ruikt, kunt u het nog
+                                    gebruiken.
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="faq-item" style="margin-bottom: 2rem;">
-                        <h3
-                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
-                            Hoe lang is honing houdbaar?</h3>
-                        <p>
-                            Honing is erg lang houdbaar. Wij geven een houdbaarheidsdatum van 2 jaren, want na die
-                            periode gaat de kwaliteit van de honing, met name de actieve enzymen, langzaam achteruit. De
-                            honing blijft soms nog jaren geschikt voor consumptie. Als het goed ruikt, kunt u het nog
-                            gebruiken.
-                        </p>
-                    </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Hoe kan ik de honing het beste bewaren?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>
+                                    Honing kunt u het beste op een koele, donkere plek bewaren, bv een keukenkastje. In de
+                                    ijskast loopt u de kans dat het dik wordt of sneller kristaliseert. Daarom is
+                                    kamertemperatuur het beste.
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="faq-item" style="margin-bottom: 2rem;">
-                        <h3
-                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
-                            Hoe kan ik de honing het beste bewaren?</h3>
-                        <p>
-                            Honing kunt u het beste op een koele, donkere plek bewaren, bv een keukenkastje. In de
-                            ijskast loopt u de kans dat het dik wordt of sneller kristaliseert. Daarom is
-                            kamertemperatuur het beste.
-                        </p>
-                    </div>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Waarom is Surinaamse honing zo dun?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>
+                                    Surinaamse honing heeft meestal een hoger vochtgehalte dan buitenlandse honing, omdat in dit
+                                    vochtige klimaat de bijen hun honing niet meer ingedampt krijgen.
+                                </p>
+                            </div>
+                        </div>
 
-                    <div class="faq-item" style="margin-bottom: 2rem;">
-                        <h3
-                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
-                            Waarom is Surinaamse honing zo dun?</h3>
-                        <p>
-                            Surinaamse honing heeft meestal een hoger vochtgehalte dan buitenlandse honing, omdat in dit
-                            vochtige klimaat de bijen hun honing niet meer ingedampt krijgen.
-                        </p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3
-                            style="font-family: var(--font-display); color: var(--honey-400); font-size: 1.25rem; margin-bottom: 0.5rem;">
-                            Hoe weet ik het verschil tussen echte en nephoning?</h3>
-                        <p>
-                            Soms is dit heel moeilijk te achterhalen, want ze kunnen honing tegenwoordig zo goed
-                            namaken. Nagenoeg alle goedkope buitenlandse honingen in de surinaamse supermarkt zijn niet
-                            echt. De prijs is te laag voor een echt product. Een test die u kunt toepassen is: zet een
-                            lepel honing in een glas koud water. Echte honing lost moeilijker op dan nep honing.
-                        </p>
+                        <div class="faq-item">
+                            <button class="faq-question">
+                                Hoe weet ik het verschil tussen echte en nephoning?
+                                <span class="faq-icon">▼</span>
+                            </button>
+                            <div class="faq-answer">
+                                <p>
+                                    Soms is dit heel moeilijk te achterhalen, want ze kunnen honing tegenwoordig zo goed
+                                    namaken. Nagenoeg alle goedkope buitenlandse honingen in de surinaamse supermarkt zijn niet
+                                    echt. De prijs is te laag voor een echt product. Een test die u kunt toepassen is: zet een
+                                    lepel honing in een glas koud water. Echte honing lost moeilijker op dan nep honing.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -324,22 +310,20 @@
             </div>
             <div class="footer-links">
                 <div class="footer-column">
-                    <h4>Producten</h4>
-                    <a href="producten.html">Bosbloemen honing</a>
-                    <a href="producten.html">Parwa Honing</a>
-                    <a href="producten.html">Jamoen Honing</a>
+                    <h4>Honing soorten</h4>
+                    <a href="producten.html">Onze Honing</a>
+                    <a href="andere-producten.html">Bijenproducten</a>
                 </div>
                 <div class="footer-column">
                     <h4>Over Faboesi</h4>
-                    <a href="about.html">Ons Verhaal</a>
-                    <a href="producten.html">Producten</a>
-                    <a href="winkels.html">Winkels</a>
+                    <a href="about.html">Over Ons</a>
+                    <a href="puur-natuur.html">Honing en Gezondheid</a>
                 </div>
                 <div class="footer-column">
                     <h4>Contact</h4>
-                    <a href="tel:+5978725949">Neem Contact Op</a>
+                    <a href="https://wa.me/5978725949">Neem Contact Op</a>
                     <a href="#">Veelgestelde Vragen</a>
-                    <a href="#">Locatie</a>
+                    <a href="winkels.html">Locaties Verkrijgbaar</a>
                 </div>
             </div>
         </div>

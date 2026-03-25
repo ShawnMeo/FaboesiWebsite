@@ -163,6 +163,7 @@ class HoneyCarousel {
 class ParticleSystem {
     constructor() {
         this.container = document.getElementById('particles');
+        if (!this.container) return;
         this.particleCount = 8; // Reduced from 20 for better performance
         this.init();
     }
@@ -236,7 +237,11 @@ class NavbarEffect {
 
 function scrollToProducts() {
     const productsSection = document.getElementById('products');
-    productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (productsSection) {
+        productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        window.location.href = 'producten.html';
+    }
 }
 
 // ============================================
@@ -392,6 +397,99 @@ function initImageModal() {
 }
 
 // ============================================
+// MOBILE MENU
+// ============================================
+
+function initMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const links = navLinks?.querySelectorAll('a');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        if (links) {
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+        }
+    }
+}
+
+// ============================================
+// FAQ ACCORDION
+// ============================================
+
+function initFAQAccordion() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    if (!faqQuestions.length) return;
+
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const isActive = question.classList.contains('active');
+            
+            // Close all
+            faqQuestions.forEach(q => {
+                q.classList.remove('active');
+                if(q.nextElementSibling) {
+                    q.nextElementSibling.style.maxHeight = null;
+                }
+            });
+            
+            // Open clicked if it wasn't active
+            if (!isActive) {
+                question.classList.add('active');
+                const answer = question.nextElementSibling;
+                if(answer) {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            }
+        });
+    });
+}
+// ============================================
+// PRODUCT CARD COLLAPSE
+// ============================================
+
+function initProductCollapse() {
+    const productNames = document.querySelectorAll('.product-info .product-name');
+    if (!productNames.length) return;
+
+    productNames.forEach(name => {
+        name.addEventListener('click', () => {
+            const collapsible = name.nextElementSibling;
+            if (!collapsible || !collapsible.classList.contains('product-collapsible')) return;
+
+            const isActive = name.classList.contains('active');
+
+            // Close all
+            productNames.forEach(n => {
+                n.classList.remove('active');
+                const c = n.nextElementSibling;
+                if (c && c.classList.contains('product-collapsible')) {
+                    c.classList.remove('active');
+                    c.style.maxHeight = null;
+                }
+            });
+
+            // Open clicked if it was closed
+            if (!isActive) {
+                name.classList.add('active');
+                collapsible.classList.add('active');
+                collapsible.style.maxHeight = collapsible.scrollHeight + "px";
+            }
+        });
+    });
+}
+
+// ============================================
 // INITIALIZE EVERYTHING
 // ============================================
 
@@ -405,6 +503,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initAddToCartButtons();
     initScrollAnimations();
     initImageModal();
+    initMobileMenu();
+    initFAQAccordion();
+    initProductCollapse();
 
     console.log('🍯 Golden Harvest loaded successfully!');
 });
