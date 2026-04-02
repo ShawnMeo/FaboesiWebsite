@@ -1018,7 +1018,7 @@ body {
 }
 
 .product-info .product-name .toggle-icon {
-    font-size: 0.8rem;
+    font-size: 1.6rem;
     transition: transform 0.3s ease;
     color: var(--honey-500);
     margin-left: var(--space-sm);
