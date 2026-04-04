@@ -240,7 +240,7 @@ function scrollToProducts() {
     if (productsSection) {
         productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-        window.location.href = 'producten.html';
+        window.location.href = 'produkten.html';
     }
 }
 

@@ -8,7 +8,7 @@ This document outlines the SEO strategy, target keywords, and recommended metada
 - Pure Surinaamse honing
 - Faboesi honing
 - Rauwe honing Suriname
-- Natuurlijke bijenproducten
+- Natuurlijke bijenprodukten
 - Honing en gezondheid
 
 ### Secondary/Long-tail Keywords
@@ -27,15 +27,15 @@ This document outlines the SEO strategy, target keywords, and recommended metada
 - **Meta Description:** Ontdek de puurste honing van Suriname. Faboesi biedt rauwe, onverhitte en ongefilterde honing zoals Parwa en Mira Oedoe. Rechtstreeks van de imker naar u.
 - **H1:** Faboesi honing: 100% Pure Surinaamse Honing
 
-### 2. Producten (`producten.html`)
+### 2. Produkten (`produkten.html`)
 - **Title:** Onze Honingsoorten - Parwa, Mira Oedoe, Jamoen & Meer | Faboesi
 - **Meta Description:** Bekijk ons assortiment aan unieke Surinaamse honingsoorten. Van de ziltige Parwa tot de medicinale Mira Oedoe en donkere Jamoen honing.
 - **H1:** Surinaamse Honingsoorten
 
-### 3. Bijenproducten (`andere-producten.html`)
-- **Title:** Natuurlijke Bijenproducten - Propolis, Bijenwas & Meer | Faboesi
-- **Meta Description:** Naast honing biedt Faboesi krachtige natuurproducten zoals propolis tinctuur, bijenwas en immuun boosters. Versterk uw gezondheid natuurlijk.
-- **H1:** Bijenproducten & Gezondheid
+### 3. Bijenprodukten (`andere-produkten.html`)
+- **Title:** Natuurlijke Bijenprodukten - Propolis, Bijenwas & Meer | Faboesi
+- **Meta Description:** Naast honing biedt Faboesi krachtige natuurprodukten zoals propolis tinctuur, bijenwas en immuun boosters. Versterk uw gezondheid natuurlijk.
+- **H1:** Bijenprodukten & Gezondheid
 
 ### 4. Honing en Gezondheid (`puur-natuur.html`)
 - **Title:** De Kracht van Honing - Gezondheidsvoordelen & Tips | Faboesi
