@@ -1,3 +1,14 @@
 na_assets/
 .antigravityignore
 WebsiteFaboesiRef.pur
+
+# Working files: design sources and exports, not part of the site
+*.blend
+*.blend1
+*.psd
+textures/
+faboesi_catalogue*.pdf
+faboesi_price_list.png
+honey prices.png
+Artboard 2.png
+Artboard 3.png
