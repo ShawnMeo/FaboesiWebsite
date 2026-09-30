@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faboesi — Verkooppunten Kaart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+        :root {
+            --honey-300: #fcd34d;
+            --honey-400: #fbbf24;
+            --honey-500: #f59e0b;
+            --bg-900: #1a1b1d;
+            --bg-800: #232528;
+            --bg-700: #2d2f33;
+            --bg-600: #383a3f;
+            --line: rgba(255, 255, 255, 0.09);
+            --text-100: #f4f5f6;
+            --text-300: #c9ccd1;
+            --text-500: #8b8f96;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-900);
+            color: var(--text-100);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.9rem 1.25rem;
+            background: var(--bg-800);
+            border-bottom: 1px solid var(--line);
+            flex-wrap: wrap;
+        }
+
+        .brand { display: flex; align-items: baseline; gap: 0.6rem; }
+
+        .brand h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            color: var(--honey-400);
+        }
+
+        .brand span { color: var(--text-500); font-size: 0.85rem; }
+
+        .stats { display: flex; gap: 1.5rem; }
+
+        .stat { text-align: center; }
+
+        .stat b {
+            display: block;
+            font-size: 1.25rem;
+            color: var(--honey-300);
+            font-weight: 600;
+        }
+
+        .stat small { color: var(--text-500); font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+        .layout { flex: 1; display: flex; min-height: 0; }
+
+        aside {
+            width: 320px;
+            background: var(--bg-800);
+            border-right: 1px solid var(--line);
+            overflow-y: auto;
+            padding: 0.75rem;
+        }
+
+        .region { margin-bottom: 0.75rem; }
+
+        .region-head {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 0.6rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-300);
+            user-select: none;
+        }
+
+        .region-head .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+        .region-head .count { margin-left: auto; color: var(--text-500); }
+
+        .store {
+            position: relative;
+            padding: 0.55rem 0.7rem;
+            border: 1px solid transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .store:hover { background: var(--bg-700); }
+        .store.active { background: var(--bg-700); border-color: rgba(251, 191, 36, 0.35); }
+
+        .store .name { font-weight: 500; font-size: 0.95rem; padding-right: 1.4rem; }
+        .store .addr { color: var(--text-500); font-size: 0.8rem; margin-top: 0.1rem; }
+        .store .note { color: var(--honey-300); font-size: 0.75rem; margin-top: 0.15rem; }
+
+        .badge-new {
+            display: inline-block;
+            font-size: 0.62rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--bg-900);
+            background: var(--honey-400);
+            border-radius: 4px;
+            padding: 1px 5px;
+            margin-left: 0.4rem;
+            vertical-align: 2px;
+        }
+
+        .store .del {
+            position: absolute;
+            top: 0.45rem;
+            right: 0.5rem;
+            border: none;
+            background: none;
+            color: var(--text-500);
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        .store .del:hover { color: #f87171; background: var(--bg-600); }
+
+        #map { flex: 1; background: #d4d6d8; }
+
+        /* Positron-tiles iets dempen naar neutraal grijs */
+        .leaflet-tile { filter: saturate(0.6) brightness(0.96); }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            color: var(--text-300);
+            flex-wrap: wrap;
+        }
+
+        .controls label { display: flex; align-items: center; gap: 0.35rem; cursor: pointer; }
+        .controls input { accent-color: var(--honey-500); }
+
+        .btn {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: var(--bg-700);
+            color: var(--text-100);
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s;
+        }
+
+        .btn:hover { background: var(--bg-600); }
+
+        .btn-accent {
+            background: var(--honey-500);
+            border-color: var(--honey-500);
+            color: #1c1d20;
+        }
+
+        .btn-accent:hover { background: var(--honey-400); }
+
+        .btn-accent.armed {
+            outline: 2px solid var(--honey-300);
+            outline-offset: 2px;
+        }
+
+        footer {
+            padding: 0.4rem 1.25rem;
+            background: var(--bg-800);
+            border-top: 1px solid var(--line);
+            font-size: 0.75rem;
+            color: var(--text-500);
+        }
+
+        footer a { color: var(--honey-400); text-decoration: none; }
+
+        /* Hint banner in add-mode */
+        #addHint {
+            display: none;
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 900;
+            background: var(--bg-800);
+            border: 1px solid var(--honey-500);
+            color: var(--text-100);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .map-wrap { position: relative; flex: 1; display: flex; min-width: 0; }
+        body.adding #map { cursor: crosshair; }
+        body.adding #addHint { display: block; }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 1200;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.open { display: flex; }
+
+        .modal {
+            width: min(420px, calc(100vw - 2rem));
+            background: var(--bg-800);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--honey-400);
+            margin-bottom: 0.9rem;
+        }
+
+        .field { margin-bottom: 0.7rem; }
+
+        .field label {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-500);
+            margin-bottom: 0.25rem;
+        }
+
+        .field input, .field select {
+            width: 100%;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            padding: 0.5rem 0.6rem;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: var(--bg-700);
+            color: var(--text-100);
+        }
+
+        .field input:focus, .field select:focus {
+            outline: none;
+            border-color: var(--honey-500);
+        }
+
+        .field-row { display: flex; gap: 0.7rem; }
+        .field-row .field { flex: 1; }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        /* Leaflet popup — grey theme */
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            background: var(--bg-800);
+            color: var(--text-100);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .leaflet-popup-content { font-family: 'Outfit', sans-serif; }
+        .popup-name { font-family: 'Playfair Display', serif; color: var(--honey-400); font-size: 1.05rem; margin-bottom: 2px; }
+        .popup-addr { color: var(--text-300); font-size: 0.85rem; }
+        .popup-note { color: var(--honey-300); font-size: 0.8rem; margin-top: 3px; }
+        .popup-approx { color: var(--text-500); font-size: 0.72rem; margin-top: 4px; font-style: italic; }
+
+        @media (max-width: 720px) {
+            .layout { flex-direction: column; }
+            aside { width: 100%; max-height: 38vh; border-right: none; border-bottom: 1px solid var(--line); }
+            .stats { gap: 1rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="brand">
+            <h1>🍯 Faboesi</h1>
+            <span>Verkooppunten Kaart</span>
+        </div>
+        <div class="stats">
+            <div class="stat"><b id="statStores">0</b><small>Winkels</small></div>
+            <div class="stat"><b id="statRegions">0</b><small>Gebieden</small></div>
+        </div>
+        <div class="controls">
+            <label><input type="checkbox" id="toggleAreas" checked> Dekkingsgebieden</label>
+            <label><input type="checkbox" id="toggleGlow" checked> Winkel-zones</label>
+            <button class="btn btn-accent" id="btnAdd">+ Winkel toevoegen</button>
+            <button class="btn" id="btnExport" title="Download een bijgewerkte stores.js met de lokaal toegevoegde winkels">⬇ Exporteer stores.js</button>
+        </div>
+    </header>
+
+    <div class="layout">
+        <aside id="sidebar"></aside>
+        <div class="map-wrap">
+            <div id="addHint">Klik op de kaart om de locatie van de nieuwe winkel te kiezen (Esc om te annuleren)</div>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <footer>
+        Bron: <a href="https://faboesi.com/winkels" target="_blank">faboesi.com/winkels</a>
+        — bijgewerkt <span id="updated"></span>. Pins staan op straatniveau (bij benadering).
+        Zelf toegevoegde winkels worden in deze browser bewaard; gebruik <b>Exporteer stores.js</b> om ze permanent te maken.
+    </footer>
+
+    <!-- Nieuwe winkel modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2>Nieuwe winkel</h2>
+            <div class="field">
+                <label for="fName">Naam</label>
+                <input id="fName" type="text" placeholder="bijv. Super Combé">
+            </div>
+            <div class="field">
+                <label for="fAddress">Adres / straat</label>
+                <input id="fAddress" type="text" placeholder="bijv. Kwattaweg 45">
+            </div>
+            <div class="field">
+                <label for="fNote">Notitie (optioneel)</label>
+                <input id="fNote" type="text" placeholder="bijv. Alleen parwa honing">
+            </div>
+            <div class="field">
+                <label for="fRegion">Gebied</label>
+                <select id="fRegion"></select>
+            </div>
+            <div class="field-row">
+                <div class="field">
+                    <label for="fLat">Latitude</label>
+                    <input id="fLat" type="text">
+                </div>
+                <div class="field">
+                    <label for="fLon">Longitude</label>
+                    <input id="fLon" type="text">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn" id="btnCancel">Annuleren</button>
+                <button class="btn btn-accent" id="btnSave">Opslaan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="stores.js"></script>
+    <script>
+        const map = L.map('map', { zoomControl: true }).setView([5.79, -55.20], 11);
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+            maxZoom: 19,
+        }).addTo(map);
+
+        const areaLayer = L.layerGroup().addTo(map);   // grote dekkingscirkels per gebied
+        const glowLayer = L.layerGroup().addTo(map);   // kleine "veroverde" zones per winkel
+        const markerLayer = L.layerGroup().addTo(map);
+
+        const sidebar = document.getElementById('sidebar');
+
+        // ---- Lokaal toegevoegde winkels (localStorage) ----
+        const LS_KEY = 'faboesi-custom-stores';
+        let customStores = [];
+        try { customStores = JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch (e) { customStores = []; }
+
+        function saveCustom() {
+            localStorage.setItem(LS_KEY, JSON.stringify(customStores));
+        }
+
+        // ---- Renderen ----
+        function renderAll() {
+            areaLayer.clearLayers();
+            glowLayer.clearLayers();
+            markerLayer.clearLayers();
+            sidebar.innerHTML = '';
+
+            let totalStores = 0;
+            const allMarkers = [];
+
+            STORE_DATA.regions.forEach(region => {
+                if (region.area) {
+                    L.circle(region.area.center, {
+                        radius: region.area.radius,
+                        color: region.color,
+                        weight: 1.5,
+                        opacity: 0.5,
+                        fillColor: region.color,
+                        fillOpacity: 0.08,
+                        dashArray: '6 6',
+                    }).addTo(areaLayer);
+                }
+
+                const regionCustom = customStores.filter(s => s.regionId === region.id);
+                const stores = [...region.stores, ...regionCustom];
+
+                const regionEl = document.createElement('div');
+                regionEl.className = 'region';
+                regionEl.innerHTML = `
+                    <div class="region-head">
+                        <span class="dot" style="background:${region.color}"></span>
+                        ${region.name}
+                        <span class="count">${stores.length}</span>
+                    </div>`;
+
+                stores.forEach(store => {
+                    totalStores++;
+                    const isCustom = !!store.regionId;
+
+                    L.circle([store.lat, store.lon], {
+                        radius: 700,
+                        color: region.color,
+                        weight: 0,
+                        fillColor: region.color,
+                        fillOpacity: 0.18,
+                    }).addTo(glowLayer);
+
+                    const marker = L.circleMarker([store.lat, store.lon], {
+                        radius: 8,
+                        color: '#1c1d20',
+                        weight: 2,
+                        fillColor: region.color,
+                        fillOpacity: 1,
+                    }).addTo(markerLayer);
+
+                    marker.bindPopup(`
+                        <div class="popup-name">${esc(store.name)}${isCustom ? ' <span class="badge-new">nieuw</span>' : ''}</div>
+                        <div class="popup-addr">📍 ${esc(store.address)}</div>
+                        ${store.note ? `<div class="popup-note">${esc(store.note)}</div>` : ''}
+                        ${store.approx ? `<div class="popup-approx">locatie bij benadering</div>` : ''}
+                    `);
+
+                    const storeEl = document.createElement('div');
+                    storeEl.className = 'store';
+                    storeEl.innerHTML = `
+                        <div class="name">${esc(store.name)}${isCustom ? '<span class="badge-new">nieuw</span>' : ''}</div>
+                        <div class="addr">${esc(store.address)}</div>
+                        ${store.note ? `<div class="note">${esc(store.note)}</div>` : ''}
+                        ${isCustom ? '<button class="del" title="Verwijderen">✕</button>' : ''}`;
+
+                    storeEl.addEventListener('click', () => {
+                        document.querySelectorAll('.store.active').forEach(el => el.classList.remove('active'));
+                        storeEl.classList.add('active');
+                        map.flyTo([store.lat, store.lon], 15, { duration: 0.8 });
+                        marker.openPopup();
+                    });
+
+                    marker.on('click', () => {
+                        document.querySelectorAll('.store.active').forEach(el => el.classList.remove('active'));
+                        storeEl.classList.add('active');
+                        storeEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                    });
+
+                    if (isCustom) {
+                        storeEl.querySelector('.del').addEventListener('click', e => {
+                            e.stopPropagation();
+                            if (!confirm(`"${store.name}" verwijderen van de kaart?`)) return;
+                            customStores = customStores.filter(s => s.id !== store.id);
+                            saveCustom();
+                            renderAll();
+                        });
+                    }
+
+                    regionEl.appendChild(storeEl);
+                    allMarkers.push(marker);
+                });
+
+                sidebar.appendChild(regionEl);
+            });
+
+            document.getElementById('statStores').textContent = totalStores;
+            document.getElementById('statRegions').textContent = STORE_DATA.regions.length;
+            return allMarkers;
+        }
+
+        function esc(s) {
+            return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        }
+
+        const initialMarkers = renderAll();
+        document.getElementById('updated').textContent = STORE_DATA.updated;
+        map.fitBounds(L.featureGroup(initialMarkers).getBounds().pad(0.15));
+
+        // ---- Toggles ----
+        document.getElementById('toggleAreas').addEventListener('change', e =>
+            e.target.checked ? map.addLayer(areaLayer) : map.removeLayer(areaLayer));
+        document.getElementById('toggleGlow').addEventListener('change', e =>
+            e.target.checked ? map.addLayer(glowLayer) : map.removeLayer(glowLayer));
+
+        // ---- Winkel toevoegen ----
+        const btnAdd = document.getElementById('btnAdd');
+        const overlay = document.getElementById('modalOverlay');
+        const regionSelect = document.getElementById('fRegion');
+        let addMode = false;
+
+        STORE_DATA.regions.forEach(r => {
+            const opt = document.createElement('option');
+            opt.value = r.id;
+            opt.textContent = r.name;
+            regionSelect.appendChild(opt);
+        });
+        regionSelect.value = 'paramaribo';
+
+        function setAddMode(on) {
+            addMode = on;
+            document.body.classList.toggle('adding', on);
+            btnAdd.classList.toggle('armed', on);
+            btnAdd.textContent = on ? 'Klik op de kaart…' : '+ Winkel toevoegen';
+        }
+
+        btnAdd.addEventListener('click', () => setAddMode(!addMode));
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                setAddMode(false);
+                overlay.classList.remove('open');
+            }
+        });
+
+        map.on('click', e => {
+            if (!addMode) return;
+            document.getElementById('fLat').value = e.latlng.lat.toFixed(5);
+            document.getElementById('fLon').value = e.latlng.lng.toFixed(5);
+            document.getElementById('fName').value = '';
+            document.getElementById('fAddress').value = '';
+            document.getElementById('fNote').value = '';
+            overlay.classList.add('open');
+            document.getElementById('fName').focus();
+        });
+
+        document.getElementById('btnCancel').addEventListener('click', () => {
+            overlay.classList.remove('open');
+            setAddMode(false);
+        });
+
+        document.getElementById('btnSave').addEventListener('click', () => {
+            const name = document.getElementById('fName').value.trim();
+            const address = document.getElementById('fAddress').value.trim();
+            const note = document.getElementById('fNote').value.trim();
+            const lat = parseFloat(document.getElementById('fLat').value);
+            const lon = parseFloat(document.getElementById('fLon').value);
+            if (!name) { alert('Vul een naam in.'); return; }
+            if (isNaN(lat) || isNaN(lon)) { alert('Ongeldige coördinaten.'); return; }
+
+            customStores.push({
+                id: Date.now(),
+                regionId: regionSelect.value,
+                name, address: address || '—', note: note || undefined,
+                lat, lon, approx: false,
+            });
+            saveCustom();
+            overlay.classList.remove('open');
+            setAddMode(false);
+            renderAll();
+        });
+
+        // ---- Exporteer stores.js (basisdata + lokale toevoegingen samengevoegd) ----
+        document.getElementById('btnExport').addEventListener('click', () => {
+            const today = new Date().toISOString().slice(0, 10);
+            const lines = [];
+            lines.push('// ============================================================');
+            lines.push('// Faboesi verkooppunten — data');
+            lines.push(`// Bron: ${STORE_DATA.source} + eigen toevoegingen (geëxporteerd ${today})`);
+            lines.push('// approx: true = pin staat op de straat, niet op het exacte pand');
+            lines.push('// ============================================================');
+            lines.push('');
+            lines.push('const STORE_DATA = {');
+            lines.push(`  updated: "${today}",`);
+            lines.push(`  source: "${STORE_DATA.source}",`);
+            lines.push('');
+            lines.push('  regions: [');
+            STORE_DATA.regions.forEach(region => {
+                lines.push('    {');
+                lines.push(`      id: "${region.id}",`);
+                lines.push(`      name: ${JSON.stringify(region.name)},`);
+                lines.push(`      color: "${region.color}",`);
+                if (region.area) {
+                    lines.push(`      area: { center: [${region.area.center[0]}, ${region.area.center[1]}], radius: ${region.area.radius} },`);
+                }
+                lines.push('      stores: [');
+                const merged = [...region.stores, ...customStores.filter(s => s.regionId === region.id)];
+                merged.forEach(s => {
+                    const parts = [
+                        `name: ${JSON.stringify(s.name)}`,
+                        `address: ${JSON.stringify(s.address)}`,
+                        `lat: ${s.lat}`,
+                        `lon: ${s.lon}`,
+                        `approx: ${!!s.approx}`,
+                    ];
+                    if (s.note) parts.push(`note: ${JSON.stringify(s.note)}`);
+                    lines.push(`        { ${parts.join(', ')} },`);
+                });
+                lines.push('      ],');
+                lines.push('    },');
+            });
+            lines.push('  ],');
+            lines.push('};');
+            lines.push('');
+
+            const blob = new Blob([lines.join('\n')], { type: 'text/javascript' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'stores.js';
+            a.click();
+            URL.revokeObjectURL(a.href);
+        });
+
+        // Rechtsklik → coördinaten (handig bij het toevoegen van winkels)
+        map.on('contextmenu', e => {
+            const c = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
+            L.popup().setLatLng(e.latlng).setContent(`<code>lat: ${e.latlng.lat.toFixed(5)}, lon: ${e.latlng.lng.toFixed(5)}</code>`).openOn(map);
+            if (navigator.clipboard) navigator.clipboard.writeText(c).catch(() => {});
+        });
+    </script>
+</body>
+
+</html>
