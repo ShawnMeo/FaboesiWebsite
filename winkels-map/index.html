@@ -320,7 +320,6 @@
             <label><input type="checkbox" id="toggleAreas" checked> Dekkingsgebieden</label>
             <label><input type="checkbox" id="toggleGlow" checked> Winkel-zones</label>
             <button class="btn btn-accent" id="btnAdd">+ Winkel toevoegen</button>
-            <button class="btn" id="btnExport" title="Download een bijgewerkte stores.js met de lokaal toegevoegde winkels">⬇ Exporteer stores.js</button>
         </div>
     </header>
 
@@ -335,7 +334,6 @@
     <footer>
         Bron: <a href="https://faboesi.com/winkels" target="_blank">faboesi.com/winkels</a>
         — bijgewerkt <span id="updated"></span>. Pins staan op straatniveau (bij benadering).
-        Zelf toegevoegde winkels worden in deze browser bewaard; gebruik <b>Exporteer stores.js</b> om ze permanent te maken.
     </footer>
 
     <!-- Nieuwe winkel modal -->
@@ -585,57 +583,6 @@
             overlay.classList.remove('open');
             setAddMode(false);
             renderAll();
-        });
-
-        // ---- Exporteer stores.js (basisdata + lokale toevoegingen samengevoegd) ----
-        document.getElementById('btnExport').addEventListener('click', () => {
-            const today = new Date().toISOString().slice(0, 10);
-            const lines = [];
-            lines.push('// ============================================================');
-            lines.push('// Faboesi verkooppunten — data');
-            lines.push(`// Bron: ${STORE_DATA.source} + eigen toevoegingen (geëxporteerd ${today})`);
-            lines.push('// approx: true = pin staat op de straat, niet op het exacte pand');
-            lines.push('// ============================================================');
-            lines.push('');
-            lines.push('const STORE_DATA = {');
-            lines.push(`  updated: "${today}",`);
-            lines.push(`  source: "${STORE_DATA.source}",`);
-            lines.push('');
-            lines.push('  regions: [');
-            STORE_DATA.regions.forEach(region => {
-                lines.push('    {');
-                lines.push(`      id: "${region.id}",`);
-                lines.push(`      name: ${JSON.stringify(region.name)},`);
-                lines.push(`      color: "${region.color}",`);
-                if (region.area) {
-                    lines.push(`      area: { center: [${region.area.center[0]}, ${region.area.center[1]}], radius: ${region.area.radius} },`);
-                }
-                lines.push('      stores: [');
-                const merged = [...region.stores, ...customStores.filter(s => s.regionId === region.id)];
-                merged.forEach(s => {
-                    const parts = [
-                        `name: ${JSON.stringify(s.name)}`,
-                        `address: ${JSON.stringify(s.address)}`,
-                        `lat: ${s.lat}`,
-                        `lon: ${s.lon}`,
-                        `approx: ${!!s.approx}`,
-                    ];
-                    if (s.note) parts.push(`note: ${JSON.stringify(s.note)}`);
-                    lines.push(`        { ${parts.join(', ')} },`);
-                });
-                lines.push('      ],');
-                lines.push('    },');
-            });
-            lines.push('  ],');
-            lines.push('};');
-            lines.push('');
-
-            const blob = new Blob([lines.join('\n')], { type: 'text/javascript' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'stores.js';
-            a.click();
-            URL.revokeObjectURL(a.href);
         });
 
         // Rechtsklik → coördinaten (handig bij het toevoegen van winkels)
