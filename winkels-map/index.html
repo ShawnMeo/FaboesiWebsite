@@ -302,7 +302,8 @@
             aside { width: 100%; max-height: 38vh; border-right: none; border-bottom: 1px solid var(--line); }
             .stats { gap: 1rem; }
         }
-    </style>
+        .leaflet-tile-pane { filter: grayscale(0.85) brightness(1.04) contrast(0.92); }
+</style>
 </head>
 
 <body>
@@ -318,15 +319,12 @@
         <div class="controls">
             <label><input type="checkbox" id="toggleAreas" checked> Dekkingsgebieden</label>
             <label><input type="checkbox" id="toggleGlow" checked> Winkel-zones</label>
-            <button class="btn btn-accent" id="btnAdd">+ Winkel toevoegen</button>
-            <button class="btn" id="btnExport" title="Download een bijgewerkte stores.js met de lokaal toegevoegde winkels">⬇ Exporteer stores.js</button>
         </div>
     </header>
 
     <div class="layout">
         <aside id="sidebar"></aside>
         <div class="map-wrap">
-            <div id="addHint">Klik op de kaart om de locatie van de nieuwe winkel te kiezen (Esc om te annuleren)</div>
             <div id="map"></div>
         </div>
     </div>
@@ -334,45 +332,7 @@
     <footer>
         Bron: <a href="https://faboesi.com/winkels" target="_blank">faboesi.com/winkels</a>
         — bijgewerkt <span id="updated"></span>. Pins staan op straatniveau (bij benadering).
-        Zelf toegevoegde winkels worden in deze browser bewaard; gebruik <b>Exporteer stores.js</b> om ze permanent te maken.
     </footer>
-
-    <!-- Nieuwe winkel modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <h2>Nieuwe winkel</h2>
-            <div class="field">
-                <label for="fName">Naam</label>
-                <input id="fName" type="text" placeholder="bijv. Super Combé">
-            </div>
-            <div class="field">
-                <label for="fAddress">Adres / straat</label>
-                <input id="fAddress" type="text" placeholder="bijv. Kwattaweg 45">
-            </div>
-            <div class="field">
-                <label for="fNote">Notitie (optioneel)</label>
-                <input id="fNote" type="text" placeholder="bijv. Alleen parwa honing">
-            </div>
-            <div class="field">
-                <label for="fRegion">Gebied</label>
-                <select id="fRegion"></select>
-            </div>
-            <div class="field-row">
-                <div class="field">
-                    <label for="fLat">Latitude</label>
-                    <input id="fLat" type="text">
-                </div>
-                <div class="field">
-                    <label for="fLon">Longitude</label>
-                    <input id="fLon" type="text">
-                </div>
-            </div>
-            <div class="modal-actions">
-                <button class="btn" id="btnCancel">Annuleren</button>
-                <button class="btn btn-accent" id="btnSave">Opslaan</button>
-            </div>
-        </div>
-    </div>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
@@ -380,8 +340,8 @@
     <script>
         const map = L.map('map', { zoomControl: true }).setView([5.79, -55.20], 11);
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             maxZoom: 19,
         }).addTo(map);
 
@@ -391,14 +351,7 @@
 
         const sidebar = document.getElementById('sidebar');
 
-        // ---- Lokaal toegevoegde winkels (localStorage) ----
-        const LS_KEY = 'faboesi-custom-stores';
-        let customStores = [];
-        try { customStores = JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch (e) { customStores = []; }
-
-        function saveCustom() {
-            localStorage.setItem(LS_KEY, JSON.stringify(customStores));
-        }
+        const customStores = [];
 
         // ---- Renderen ----
         function renderAll() {
@@ -518,131 +471,6 @@
             e.target.checked ? map.addLayer(areaLayer) : map.removeLayer(areaLayer));
         document.getElementById('toggleGlow').addEventListener('change', e =>
             e.target.checked ? map.addLayer(glowLayer) : map.removeLayer(glowLayer));
-
-        // ---- Winkel toevoegen ----
-        const btnAdd = document.getElementById('btnAdd');
-        const overlay = document.getElementById('modalOverlay');
-        const regionSelect = document.getElementById('fRegion');
-        let addMode = false;
-
-        STORE_DATA.regions.forEach(r => {
-            const opt = document.createElement('option');
-            opt.value = r.id;
-            opt.textContent = r.name;
-            regionSelect.appendChild(opt);
-        });
-        regionSelect.value = 'paramaribo';
-
-        function setAddMode(on) {
-            addMode = on;
-            document.body.classList.toggle('adding', on);
-            btnAdd.classList.toggle('armed', on);
-            btnAdd.textContent = on ? 'Klik op de kaart…' : '+ Winkel toevoegen';
-        }
-
-        btnAdd.addEventListener('click', () => setAddMode(!addMode));
-
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape') {
-                setAddMode(false);
-                overlay.classList.remove('open');
-            }
-        });
-
-        map.on('click', e => {
-            if (!addMode) return;
-            document.getElementById('fLat').value = e.latlng.lat.toFixed(5);
-            document.getElementById('fLon').value = e.latlng.lng.toFixed(5);
-            document.getElementById('fName').value = '';
-            document.getElementById('fAddress').value = '';
-            document.getElementById('fNote').value = '';
-            overlay.classList.add('open');
-            document.getElementById('fName').focus();
-        });
-
-        document.getElementById('btnCancel').addEventListener('click', () => {
-            overlay.classList.remove('open');
-            setAddMode(false);
-        });
-
-        document.getElementById('btnSave').addEventListener('click', () => {
-            const name = document.getElementById('fName').value.trim();
-            const address = document.getElementById('fAddress').value.trim();
-            const note = document.getElementById('fNote').value.trim();
-            const lat = parseFloat(document.getElementById('fLat').value);
-            const lon = parseFloat(document.getElementById('fLon').value);
-            if (!name) { alert('Vul een naam in.'); return; }
-            if (isNaN(lat) || isNaN(lon)) { alert('Ongeldige coördinaten.'); return; }
-
-            customStores.push({
-                id: Date.now(),
-                regionId: regionSelect.value,
-                name, address: address || '—', note: note || undefined,
-                lat, lon, approx: false,
-            });
-            saveCustom();
-            overlay.classList.remove('open');
-            setAddMode(false);
-            renderAll();
-        });
-
-        // ---- Exporteer stores.js (basisdata + lokale toevoegingen samengevoegd) ----
-        document.getElementById('btnExport').addEventListener('click', () => {
-            const today = new Date().toISOString().slice(0, 10);
-            const lines = [];
-            lines.push('// ============================================================');
-            lines.push('// Faboesi verkooppunten — data');
-            lines.push(`// Bron: ${STORE_DATA.source} + eigen toevoegingen (geëxporteerd ${today})`);
-            lines.push('// approx: true = pin staat op de straat, niet op het exacte pand');
-            lines.push('// ============================================================');
-            lines.push('');
-            lines.push('const STORE_DATA = {');
-            lines.push(`  updated: "${today}",`);
-            lines.push(`  source: "${STORE_DATA.source}",`);
-            lines.push('');
-            lines.push('  regions: [');
-            STORE_DATA.regions.forEach(region => {
-                lines.push('    {');
-                lines.push(`      id: "${region.id}",`);
-                lines.push(`      name: ${JSON.stringify(region.name)},`);
-                lines.push(`      color: "${region.color}",`);
-                if (region.area) {
-                    lines.push(`      area: { center: [${region.area.center[0]}, ${region.area.center[1]}], radius: ${region.area.radius} },`);
-                }
-                lines.push('      stores: [');
-                const merged = [...region.stores, ...customStores.filter(s => s.regionId === region.id)];
-                merged.forEach(s => {
-                    const parts = [
-                        `name: ${JSON.stringify(s.name)}`,
-                        `address: ${JSON.stringify(s.address)}`,
-                        `lat: ${s.lat}`,
-                        `lon: ${s.lon}`,
-                        `approx: ${!!s.approx}`,
-                    ];
-                    if (s.note) parts.push(`note: ${JSON.stringify(s.note)}`);
-                    lines.push(`        { ${parts.join(', ')} },`);
-                });
-                lines.push('      ],');
-                lines.push('    },');
-            });
-            lines.push('  ],');
-            lines.push('};');
-            lines.push('');
-
-            const blob = new Blob([lines.join('\n')], { type: 'text/javascript' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'stores.js';
-            a.click();
-            URL.revokeObjectURL(a.href);
-        });
-
-        // Rechtsklik → coördinaten (handig bij het toevoegen van winkels)
-        map.on('contextmenu', e => {
-            const c = `${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`;
-            L.popup().setLatLng(e.latlng).setContent(`<code>lat: ${e.latlng.lat.toFixed(5)}, lon: ${e.latlng.lng.toFixed(5)}</code>`).openOn(map);
-            if (navigator.clipboard) navigator.clipboard.writeText(c).catch(() => {});
-        });
     </script>
 </body>
 
